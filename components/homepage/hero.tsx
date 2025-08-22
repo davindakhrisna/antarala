@@ -61,8 +61,14 @@ const Hero = () => {
           <h1 className="text-5xl font-bold tracking-widest">cerita besar Indonesia</h1>
           <h2 className="text-2xl font-medium">Belajar memahami Indonesia dari ruang yang tak biasa</h2>
           <Link href="/daerah" className="inline-block">
-            <Button variant={"outline"} className="p-7 cursor-pointer rounded-4xl text-md border-white">Mulai Menjelajah</Button>
+            <Button
+              variant="outline"
+              className="p-7 cursor-pointer rounded-4xl text-md border-white bg-transparent text-white hover:bg-white/10 transition"
+            >
+              Mulai Menjelajah
+            </Button>
           </Link>
+
         </div>
 
         {/* Card Float */}
