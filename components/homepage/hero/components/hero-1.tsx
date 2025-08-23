@@ -8,7 +8,7 @@ const CardFloat = () => {
   const CardLead = "backdrop-blur-lg border border-white/20 bg-[#FAF4E1] "
 
   return (
-    <div className="absolute right-0 -bottom-2/12">
+    <div className="absolute right-0 -bottom-2/6">
       <div className="flex flex-col items-end-safe gap-3">
 
         {/* Hero Lead */}

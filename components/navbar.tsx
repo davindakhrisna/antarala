@@ -1,22 +1,35 @@
-
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Search, Globe, X } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Search, Public } from "@mui/icons-material"
+import { useState, useEffect } from "react"
 
 export default function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [position, setPosition] = useState("EN")
+  const [isScrolled, setIsScrolled] = useState(false)
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen)
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-black/30' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -33,52 +46,48 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/daerah" className="text-foreground hover:text-primary transition-colors">
+            <a href="/daerah" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
               Daerah
             </a>
-            <a href="/artikel" className="text-foreground hover:text-primary transition-colors">
+            <a href="/artikel" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
               Artikel
             </a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors">
+            <a href="#services" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
               Services
             </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+            <a href="#contact" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
               Contact
             </a>
           </div>
 
           {/* Right Side - Language & Search */}
-          <div className="flex items-center space-x-2">
-            {/* Search */}
-            <div className="flex items-center">
-              {isSearchOpen ? (
-                <div className="flex items-center space-x-2 animate-in slide-in-from-right-2 duration-200">
-                  <Input type="search" placeholder="Search..." className="w-48" autoFocus />
-                  <Button variant="ghost" size="icon" onClick={toggleSearch} className="h-9 w-9">
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              ) : (
-                <Button variant="ghost" size="icon" onClick={toggleSearch} className="h-9 w-9">
-                  <Search className="h-4 w-4" />
-                </Button>
-              )}
-            </div>
+          <div className="flex items-center space-x-3">
 
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
-                  <Globe className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center space-x-1 cursor-pointer">
+                  <Public className="h-4 w-4 text-[#F3F8F4]" />
+                  <span className="text-[#F3F8F4]">{position}</span>
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>🇺🇸 English</DropdownMenuItem>
-                <DropdownMenuItem>🇪🇸 Español</DropdownMenuItem>
-                <DropdownMenuItem>🇫🇷 Français</DropdownMenuItem>
-                <DropdownMenuItem>🇩🇪 Deutsch</DropdownMenuItem>
+                <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                  <DropdownMenuRadioItem value="EN" className="cursor-pointer">English</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="ID" className="cursor-pointer">Indonesia</DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
+
+            {/* Separator */}
+            <div className="h-6 w-px bg-white" />
+
+            {/* Search */}
+            <div className="flex items-center">
+              <Link href="/artikel">
+                <Search className="h-4 w-4 text-[#F3F8F4]" />
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
