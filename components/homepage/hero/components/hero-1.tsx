@@ -44,7 +44,7 @@ const CardFloat = () => {
   )
 }
 
-const Hero = () => {
+const HeroFirst = () => {
   return (
     <section
       className="relative p-18 overflow-hidden min-h-screen min-w-screen flex flex-initial items-center bg-black"
@@ -91,4 +91,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default HeroFirst
