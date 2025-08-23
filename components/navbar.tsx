@@ -29,7 +29,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-black/30' : ''}`}>
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-[#282626]/50' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}

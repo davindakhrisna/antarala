@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Parallax } from 'react-scroll-parallax';
 
 {/* Card Floater */ }
 const CardFloat = () => {
@@ -29,14 +30,19 @@ const HeroSecond = () => {
       className="relative p-18 overflow-hidden min-h-screen min-w-screen flex flex-initial items-center bg-black"
     >
       {/* Image Here */}
-      <Image
-        src="/homepage/hero/hero2.png"
-        alt="Indonesia Richness and Beautiful Landscape"
-        fill
-        quality={100}
-        className="object-cover blur-xs"
-        priority
-      />
+      <Parallax
+        speed={-20}
+        className="absolute inset-0 w-full h-full"
+      >
+        <Image
+          src="/homepage/hero/hero2.png"
+          alt="Indonesia Richness and Beautiful Landscape"
+          fill
+          quality={100}
+          className="object-cover blur-xs"
+          priority
+        />
+      </Parallax>
 
       {/* Gradient */}
       <div
