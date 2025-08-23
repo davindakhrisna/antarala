@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/theme";
-import { Inter, Geist, Geist_Mono } from "next/font/google";
+import { Sen, Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 
@@ -14,9 +14,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const interFont = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const senFont = Sen({
+  subsets: ["latin"]
 })
 
 export const metadata: Metadata = {
@@ -32,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${interFont.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${senFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"

@@ -1,5 +1,5 @@
-import Hero from "@/components/homepage/hero";
-import Menu from "@/components/homepage/Menu";
+import Hero from "@/components/homepage/hero/hero";
+import Menu from "@/components/homepage/slide";
 const Index = () => {
   return (
     <>
