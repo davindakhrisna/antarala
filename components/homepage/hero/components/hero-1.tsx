@@ -44,6 +44,7 @@ const CardFloat = () => {
   )
 }
 
+{/* Hero Section */ }
 const HeroFirst = () => {
   return (
     <section
@@ -51,7 +52,7 @@ const HeroFirst = () => {
     >
       {/* Image Here */}
       <Image
-        src="/homepage/hero.png"
+        src="/homepage/hero/hero.png"
         alt="Indonesia Richness and Beautiful Landscape"
         fill
         quality={100}
@@ -68,7 +69,7 @@ const HeroFirst = () => {
       />
 
       {/* Main Component */}
-      <div className="w-full h-full flex flex-row pt-28 relative z-10">
+      <div className="w-full h-full flex flex-row relative z-10">
         <div className="text-white space-y-6">
           <h1 className="text-5xl font-bold tracking-widest">Ruang kecil untuk</h1>
           <h1 className="text-5xl font-bold tracking-widest">cerita besar Indonesia</h1>
@@ -84,7 +85,9 @@ const HeroFirst = () => {
         </div>
 
         {/* Card Float */}
-        <CardFloat />
+        <div className="hidden sm:inline-block">
+          <CardFloat />
+        </div>
       </div>
 
     </section>
