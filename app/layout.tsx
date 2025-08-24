@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/ui/theme";
 import { Sen, Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/navbar"
 import { Providers } from "@/app/providers"
+import Navbar from "@/components/navbar";
 
 import "./globals.css";
 
@@ -35,18 +34,11 @@ export default function RootLayout({
       <body
         className={`${senFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main>
-            <Navbar />
-            <Providers>{children}</Providers>
-          </main>
-        </ThemeProvider>
+        <main>
+          <Navbar />
+          <Providers>{children}</Providers>
+        </main>
       </body>
-    </html>
+    </html >
   );
 }

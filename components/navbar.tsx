@@ -3,6 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Search, Public } from "@mui/icons-material"
+import { useState, useEffect } from "react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,11 +12,100 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Search, Public } from "@mui/icons-material"
-import { useState, useEffect } from "react"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Separator } from "@/components/ui/separator"
+
+function Sidebar({ language, onLanguageChange }: { language: string, onLanguageChange: (lang: string) => void }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const navigationLinks = [
+    { href: "/daerah", label: "Daerah" },
+    { href: "/artikel", label: "Artikel" },
+    { href: "#services", label: "Services" },
+    { href: "#contact", label: "Contact" },
+  ]
+
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="flex justify-center items-center text-[#F3F8F4]">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="border-l w-3/7 md:w-2/7 border-gray-700">
+        <SheetHeader>
+          <SheetTitle className="hidden">Antarala</SheetTitle>
+        </SheetHeader>
+
+        <div className="flex flex-col h-full">
+          <div className="flex-1">
+            <nav className="text-end space-y-2">
+            {navigationLinks.map((link) => (
+              <SheetClose key={link.href} asChild>
+                <Link
+                  href={link.href}
+                  className="block px-4 py-2 text-lg hover:text-green-600 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </SheetClose>
+            ))}
+
+            <Separator />
+
+            <div className="flex flex-col space-y-2">
+              <Link href="/artikel" className="px-4 py-2 text-lg space-x-2 flex justify-end" onClick={() => setIsOpen(false)}>
+                <Search className="h-5 w-5" />
+                <span>Search</span>
+              </Link>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex space-x-2 text-lg py-2 px-4 justify-end hover:bg-gray-700">
+                    <Public className="h-5 w-5" />
+                    <span>{language}</span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-[#282626] border-gray-700 text-[#F3F8F4]">
+                  <DropdownMenuRadioGroup value={language} onValueChange={onLanguageChange}>
+                    <DropdownMenuRadioItem value="EN" className="cursor-pointer hover:bg-gray-700">
+                      English
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="ID" className="cursor-pointer hover:bg-gray-700">
+                      Indonesia
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </nav>
+          </div>
+          
+          <SheetFooter className="mt-auto py-4">
+            <Separator/>
+            <div className="w-full text-center text-sm text-gray-400">
+              © {new Date().getFullYear()} Antarala. All rights reserved.
+            </div>
+          </SheetFooter>
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
 
 export default function Navbar() {
-  const [position, setPosition] = useState("EN")
+  const [language, setLanguage] = useState("EN")
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -30,7 +121,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-[#282626]/50' : ''}`}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
@@ -45,7 +136,7 @@ export default function Navbar() {
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <a href="/daerah" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
               Daerah
             </a>
@@ -61,18 +152,18 @@ export default function Navbar() {
           </div>
 
           {/* Right Side - Language & Search */}
-          <div className="flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-4">
 
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="flex items-center space-x-1 cursor-pointer">
                   <Public className="h-4 w-4 text-[#F3F8F4]" />
-                  <span className="text-[#F3F8F4]">{position}</span>
+                  <span className="text-[#F3F8F4]">{language}</span>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
                   <DropdownMenuRadioItem value="EN" className="cursor-pointer">English</DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="ID" className="cursor-pointer">Indonesia</DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
@@ -88,15 +179,11 @@ export default function Navbar() {
                 <Search className="h-4 w-4 text-[#F3F8F4]" />
               </Link>
             </div>
+          </div>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </Button>
-            </div>
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <Sidebar language={language} onLanguageChange={setLanguage} />
           </div>
         </div>
       </div>

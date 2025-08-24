@@ -27,12 +27,12 @@ const CardFloat = () => {
 const HeroSecond = () => {
   return (
     <section
-      className="relative p-18 overflow-hidden min-h-screen min-w-screen flex flex-initial items-center bg-black"
+      className="relative p-18 overflow-hidden min-h-screen flex flex-initial items-center bg-black"
     >
       {/* Image Here */}
       <Parallax
         speed={-20}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 "
       >
         <Image
           src="/homepage/hero/hero2.png"
@@ -53,7 +53,7 @@ const HeroSecond = () => {
       />
 
       {/* Main Component */}
-      <div className="w-full h-full flex flex-row pt-28 relative z-10">
+      <div className="h-full flex flex-row pt-28 relative z-10">
         <div className="text-white space-y-6">
           <h1 className="text-5xl font-bold tracking-widest">Ruang kecil untuk</h1>
           <h1 className="text-5xl font-bold tracking-widest">cerita besar Indonesia</h1>
