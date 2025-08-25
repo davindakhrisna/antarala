@@ -6,7 +6,7 @@ import HeroSecond from "@/components/homepage/hero/components/hero-2"
 
 const Hero = () => {
   return (
-    <HeroFirst />
+    <HeroSecond />
   )
 }
 

@@ -45,7 +45,7 @@ const CardFloat = () => {
         {/* Hero Lead */}
         <div className="flex flex-col items-center w-fit">
           <motion.h1
-            className="font-bold text-lg text-[#FAF4E1]"
+            className="font-bold text-lg text-[#F3F8F4]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -124,7 +124,7 @@ const HeroFirst = () => {
 
   return (
     <section
-      className="relative p-8 md:p-18 overflow-hidden min-h-screen flex flex-initial items-center bg-black"
+      className="relative p-8 md:p-18 overflow-hidden min-h-screen flex items-center bg-black"
     >
       {/* Image Here */}
       <Parallax
@@ -150,26 +150,26 @@ const HeroFirst = () => {
       />
 
       {/* Main Component */}
-      <div className="w-full h-full flex flex-row relative z-10">
+      <div className="w-full h-full flex flex-row  relative z-10">
         <Parallax
           speed={15}
         >
           <motion.div
-            className="text-white space-y-2 md:space-y-3 lg:space-y-6"
+            className="text-white space-y-6 md:space-y-3 lg:space-y-6 text-center md:text-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-widest"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Ruang kecil untuk
+              Ruang kecil untuk <span className="sm:hidden">cerita besar Indonesia</span>
             </motion.h1>
             <motion.h1
-              className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-widest"
+              className="hidden sm:block md:text-4xl lg:text-5xl font-bold tracking-widest"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -177,7 +177,7 @@ const HeroFirst = () => {
               cerita besar Indonesia
             </motion.h1>
             <motion.h2
-              className="text-md md:text-xl lg:text-2xl font-medium"
+              className="text-xl md:text-xl lg:text-2xl font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -188,6 +188,7 @@ const HeroFirst = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex justify-center items-center sm:justify-start sm:items-start"
             >
               <Link href="/daerah">
                 <Button
