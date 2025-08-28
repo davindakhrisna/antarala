@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Parallax } from "react-scroll-parallax"
-import React from "react"
+import { useEffect, useState} from "react"
 import { motion } from "motion/react"
 
 {
@@ -15,13 +15,13 @@ const CardFloat = () => {
   const CardLead = "backdrop-blur-lg border border-white/20 bg-[#FAF4E1] "
   const text =
     "Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. Antarala hadir sebagai ruang kecil yang merawat jejak-jejak itu, menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap"
-  const [displayText, setDisplayText] = React.useState("")
-  const [currentIndex, setCurrentIndex] = React.useState(0)
-  const [showCard, setShowCard] = React.useState(false)
-  const [animationComplete, setAnimationComplete] = React.useState(false)
-  const [isInView, setIsInView] = React.useState(false)
+  const [displayText, setDisplayText] = useState("")
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showCard, setShowCard] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
+  const [isInView, setIsInView] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isInView) {
       setDisplayText("")
       setCurrentIndex(0)
@@ -39,7 +39,7 @@ const CardFloat = () => {
     }
   }, [isInView])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!animationComplete) return
 
     if (currentIndex < text.length) {

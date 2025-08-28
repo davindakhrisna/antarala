@@ -11,29 +11,51 @@ import { Separator } from "@/components/ui/separator";
 const CardFloat = () => {
 
   return (
-    <Card>
-      <CardHeader>
-        <h1 className="text-3xl md:text-3xl font-bold">Pendahuluan</h1>
-        <Separator className="bg-black" />
-      </CardHeader>
-      <CardContent>
-        <p className="max-w-md text-md xl:text-lg">
-          Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
-          menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap
-        </p>
-      </CardContent>
-      <CardFooter>
-        <Button
-          asChild
-          variant="ghost"
-          className="py-6 text-md border-1 border-black cursor-pointer hover:bg-amber-300 transition-colors"
-        >
-          <Link href="/tentang">
-            Baca Selengkapnya
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="flex">
+      <motion.div
+        className="flex flex-col justify-center text-start px-12 space-y-8 rounded-l-4xl border-l-8 border-l-amber-100 backdrop-blur-md font-bold z-0"
+        initial={{ x: 700, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 68, mass: 0.2, delay: 0.5 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <h1 className="text-5xl text-white tracking-widest">Melihat <span className="text-[#FFC200]">Indonesia</span> lewat</h1>
+        <h1 className="text-5xl text-white tracking-widest"><span className="text-[#FFC200]">celah</span> yang jarang dibuka</h1>
+      </motion.div>
+
+      <motion.div
+        className="relative backdrop-blur-md z-11"
+        initial={{ x: 160, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 18, mass: 0.6, delay: 0.15 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+
+        <Card className="bg-[#FAF4E1]/30 border-0 text-white">
+          <CardHeader>
+            <h1 className="text-4xl font-bold">Pendahuluan</h1>
+            <Separator />
+          </CardHeader>
+          <CardContent>
+            <p className="max-w-md text-md xl:text-lg">
+              Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
+              menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Button
+              asChild
+              variant="ghost"
+              className="py-6 text-md border-1 border-black cursor-pointer hover:bg-amber-300 transition-colors"
+            >
+              <Link href="/tentang">
+                Baca Selengkapnya
+              </Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </motion.div>
+    </div>
   )
 }
 
@@ -62,61 +84,19 @@ const HeroThird = () => {
       </Parallax>
 
       {/* Main Component */}
-      <div className="w-full h-full flex flex-row  relative z-10">
-        <Parallax
-          speed={15}
-        >
-          <motion.div
-            className="text-white space-y-6 md:space-y-3 lg:space-y-6 text-center md:text-start"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Ruang kecil untuk <span className="sm:hidden">cerita besar Indonesia</span>
-            </motion.h1>
-            <motion.h1
-              className="hidden sm:block md:text-4xl lg:text-5xl font-bold tracking-widest"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              cerita besar Indonesia
-            </motion.h1>
-            <motion.h2
-              className="text-xl md:text-xl lg:text-2xl font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              Belajar memahami Indonesia dari ruang yang tak biasa
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex justify-center items-center sm:justify-start sm:items-start"
-            >
-              <Link href="/daerah">
-                <Button
-                  className="p-3 md:p-6 cursor-pointer rounded-4xl text-sm lg:text-md border border-white backdrop-blur-xs bg-transparent text-white hover:bg-white/10 transition"
-                >
-                  Mulai Menjelajah
-                </Button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </Parallax>
+      <div className="w-full h-full flex justify-center relative z-10">
 
-        {/* Card Float */}
-        <div className="hidden lg:inline-block">
-          <CardFloat />
+        <div className="w-fit relative flex">
+
+
+
+          {/* Card Float */}
+          <div className="hidden lg:inline-block relative z-10">
+            <CardFloat />
+          </div>
+
         </div>
+
       </div>
 
     </section>
