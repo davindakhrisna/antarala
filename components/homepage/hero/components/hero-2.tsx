@@ -110,7 +110,7 @@ const HeroSecond = () => {
       />
 
       {/* Main Component */}
-      <div className="w-full h-full container mx-auto px-8 flex flex-col lg:flex-row items-center justify-center lg:justify-between relative z-10">
+      <Parallax speed={12} className="w-full h-full container mx-auto px-8 flex flex-col lg:flex-row items-center justify-center lg:justify-between relative z-10">
 
         {/* Card Float */}
         <div className="w-full lg:w-3/10 flex justify-center lg:justify-start mb-12 lg:mb-0">
@@ -172,7 +172,7 @@ const HeroSecond = () => {
             <span className="text-[#FFC200]">Indonesia</span> tak hanya yang kau tahu.
           </motion.h2>
         </Parallax>
-      </div>
+      </Parallax>
 
     </section >
   )
