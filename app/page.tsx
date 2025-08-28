@@ -1,6 +1,7 @@
 import Hero from "@/components/homepage/hero/index";
 import Menu from "@/components/homepage/slide";
 import Tradisi from "@/components/homepage/Tradisi";
+import Kuliner from "@/components/homepage/kuliner";
 
 const Index = () => {
   return (
@@ -8,6 +9,7 @@ const Index = () => {
       <Hero />
       <Menu />
       <Tradisi />
+      <Kuliner />
     </>
   )
 }

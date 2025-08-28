@@ -8,7 +8,7 @@ export default function Tradisi() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/tradisi/tradisi_bali.png')`,
+          backgroundImage: `url('/tradisi/tradisi_bali.svg')`,
         }}
       >
         {/* Dark overlay for better text readability */}
