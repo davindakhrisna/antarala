@@ -1,7 +1,9 @@
-const page = () => {
+import Map from "@/components/daerah/map"
+
+const Daerah = () => {
   return (
-    <div></div>
+    <Map />
   )
 }
 
-export default page
+export default Daerah
