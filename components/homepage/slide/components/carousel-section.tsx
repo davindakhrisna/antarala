@@ -23,7 +23,7 @@ const destinations: DestinationData[] = [
     name: "Gn. Slamet",
     location: "Jawa Tengah",
     description:
-      "Gunung Slamet adalah gunung berapi aktif bertipe stratovolcano yang terletak di Jawa Tengah, Indonesia. Dengan ketinggian sekitar 3.432 meter di atas permukaan laut.",
+      "Gunung Slamet adalah gunung berapi aktif bertipe stratovolcano yang terletak di Jawa Tengah, Indonesia.",
     image: "/destinations/slamet.png",
     number: "02",
     description2:
@@ -57,7 +57,7 @@ const destinations: DestinationData[] = [
     name: "Raja Ampat",
     location: "Papua Barat",
     description:
-      "Raja Ampat adalah surga laut Indonesia dengan pulau eksotis dan tempat di mana alam, budaya, dan spiritualitas berpadu dalam keheningan yang agung.",
+      "Raja Ampat adalah surga laut Indonesia dengan pulau eksotis dan tempat di mana alam berpadu dalam keheningan yang agung.",
     image: "/destinations/rajaampat.png",
     number: "03",
     description2: "",
@@ -68,7 +68,7 @@ const destinations: DestinationData[] = [
     name: "Danau Toba",
     location: "Sumatra Utara",
     description:
-      "Danau Toba adalah mahakarya alam salah satu danau vulkanik terbesar di dunia yang menyimpan jejak letusan purba, budaya Batak, dan lanskap yang memukau.",
+      "Danau Toba adalah mahakarya alam salah satu danau vulkanik terbesar di dunia yang menyimpan jejak letusan purba.",
     image: "/destinations/toba.png",
     description2: "",
     number: "01",
@@ -78,7 +78,13 @@ const destinations: DestinationData[] = [
 
 const CarouselSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState<"left" | "right">("right")
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  const goToSlide = (index: number, dir: "left" | "right") => {
+    setDirection(dir)
+    setCurrentIndex(index)
+  }
 
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % destinations.length)
   const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? destinations.length - 1 : prev - 1))

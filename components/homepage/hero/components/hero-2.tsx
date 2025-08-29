@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Parallax } from 'react-scroll-parallax'
-import React from 'react';
 import { motion } from 'motion/react';
 import { Separator } from "@/components/ui/separator";
 
@@ -103,7 +102,7 @@ const HeroSecond = () => {
 
       {/* Gradient */}
       <div
-        className="absolute inset-0 backdrop-blur-sm pointer-events-none"
+        className="absolute inset-0 backdrop-blur-md sm:backdrop-blur-sm pointer-events-none"
         style={{
           background: "linear-gradient(to bottom right, rgba(93, 121, 108, 0.1) 1%, rgba(4, 44, 34, 0.4) 100%)",
         }}
@@ -122,7 +121,7 @@ const HeroSecond = () => {
         {/* Main Content */}
         <Parallax speed={-5} className="w-full lg:w-7/12 space-y-6 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
           <motion.h1
-            className="text-3xl md:text-5xl text-white font-bold"
+            className="text-3xl leading-12 md:text-5xl text-white font-bold tracking-widest"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{
               opacity: 1,
@@ -136,10 +135,11 @@ const HeroSecond = () => {
             viewport={{ once: true, margin: "-50px" }}
           >
             <span className="text-[#FFC200]">Bukan</span> arus UTAMA.
+            <span className="md:hidden"> Justru <span className="text-[#FFC200]">di sanalah</span> <span>MAKNA</span></span>
           </motion.h1>
 
           <motion.h1
-            className="text-3xl md:text-5xl text-white font-bold"
+            className="hidden sm:block text-3xl md:text-5xl text-white font-bold tracking-widest"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{
               opacity: 1,
@@ -156,7 +156,7 @@ const HeroSecond = () => {
           </motion.h1>
 
           <motion.h2
-            className="text-2xl md:text-3xl lg:text-4xl font-medium text-whitetext-white"
+            className="text-lg md:text-3xl lg:text-4xl font-medium text-white tracking-widest"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{
               opacity: 1,

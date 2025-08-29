@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Parallax } from "react-scroll-parallax"
-import React from "react"
+import { useEffect, useState } from "react"
 import { motion } from "motion/react"
 
 {
@@ -15,13 +15,13 @@ const CardFloat = () => {
   const CardLead = "backdrop-blur-lg border border-white/20 bg-[#FAF4E1] "
   const text =
     "Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. Antarala hadir sebagai ruang kecil yang merawat jejak-jejak itu, menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap"
-  const [displayText, setDisplayText] = React.useState("")
-  const [currentIndex, setCurrentIndex] = React.useState(0)
-  const [showCard, setShowCard] = React.useState(false)
-  const [animationComplete, setAnimationComplete] = React.useState(false)
-  const [isInView, setIsInView] = React.useState(false)
+  const [displayText, setDisplayText] = useState("")
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showCard, setShowCard] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
+  const [isInView, setIsInView] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isInView) {
       setDisplayText("")
       setCurrentIndex(0)
@@ -39,7 +39,7 @@ const CardFloat = () => {
     }
   }, [isInView])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!animationComplete) return
 
     if (currentIndex < text.length) {
@@ -181,7 +181,7 @@ const HeroFirst = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-12 tracking-widest"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
@@ -215,7 +215,7 @@ const HeroFirst = () => {
               className="flex justify-center items-center sm:justify-start sm:items-start"
             >
               <Link href="/daerah">
-                <Button className="p-3 md:p-6 cursor-pointer rounded-4xl text-sm lg:text-md border border-white backdrop-blur-xs bg-transparent text-white hover:bg-white/10 transition">
+                <Button className="p-6 cursor-pointer rounded-4xl text-md lg:text-md border border-white backdrop-blur-xs bg-transparent text-white hover:bg-white/10 transition">
                   Mulai Menjelajah
                 </Button>
               </Link>

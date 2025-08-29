@@ -7,7 +7,7 @@ import HeroThird from "@/components/homepage/hero/components/hero-3"
 
 const Hero = () => {
   return (
-    <HeroThird />
+    <HeroSecond />
   )
 }
 

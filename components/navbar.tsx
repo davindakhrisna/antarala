@@ -50,50 +50,50 @@ function Sidebar({ language, onLanguageChange }: { language: string, onLanguageC
         <div className="flex flex-col h-full">
           <div className="flex-1">
             <nav className="text-end space-y-2">
-            {navigationLinks.map((link) => (
-              <SheetClose key={link.href} asChild>
-                <Link
-                  href={link.href}
-                  className="block px-4 py-2 text-lg hover:text-green-600 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
+              {navigationLinks.map((link) => (
+                <SheetClose key={link.href} asChild>
+                  <Link
+                    href={link.href}
+                    className="block px-4 py-2 text-lg hover:text-green-600 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </SheetClose>
+              ))}
+
+              <Separator />
+
+              <div className="flex flex-col space-y-2">
+                <Link href="/artikel" className="px-4 py-2 text-lg space-x-2 flex justify-end" onClick={() => setIsOpen(false)}>
+                  <Search className="h-5 w-5" />
+                  <span>Search</span>
                 </Link>
-              </SheetClose>
-            ))}
 
-            <Separator />
-
-            <div className="flex flex-col space-y-2">
-              <Link href="/artikel" className="px-4 py-2 text-lg space-x-2 flex justify-end" onClick={() => setIsOpen(false)}>
-                <Search className="h-5 w-5" />
-                <span>Search</span>
-              </Link>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <div className="flex space-x-2 text-lg py-2 px-4 justify-end hover:bg-gray-700">
-                    <Public className="h-5 w-5" />
-                    <span>{language}</span>
-                  </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-[#282626] border-gray-700 text-[#F3F8F4]">
-                  <DropdownMenuRadioGroup value={language} onValueChange={onLanguageChange}>
-                    <DropdownMenuRadioItem value="EN" className="cursor-pointer hover:bg-gray-700">
-                      English
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="ID" className="cursor-pointer hover:bg-gray-700">
-                      Indonesia
-                    </DropdownMenuRadioItem>
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </nav>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="flex space-x-2 text-lg py-2 px-4 justify-end hover:bg-gray-700">
+                      <Public className="h-5 w-5" />
+                      <span>{language}</span>
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-[#282626] border-gray-700 text-[#F3F8F4]">
+                    <DropdownMenuRadioGroup value={language} onValueChange={onLanguageChange}>
+                      <DropdownMenuRadioItem value="EN" className="cursor-pointer hover:bg-gray-700">
+                        English
+                      </DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="ID" className="cursor-pointer hover:bg-gray-700">
+                        Indonesia
+                      </DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </nav>
           </div>
-          
+
           <SheetFooter className="mt-auto py-4">
-            <Separator/>
+            <Separator />
             <div className="w-full text-center text-sm text-gray-400">
               © {new Date().getFullYear()} Antarala. All rights reserved.
             </div>
@@ -137,16 +137,16 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="/daerah" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
+            <a href="/daerah" className="text-[#F3F8F4] hover:text-white transition-colors">
               Daerah
             </a>
-            <a href="/artikel" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
+            <a href="/artikel" className="text-[#F3F8F4] hover:text-white transition-colors">
               Artikel
             </a>
-            <a href="#services" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
+            <a href="#services" className="text-[#F3F8F4] hover:text-white transition-colors">
               Services
             </a>
-            <a href="#contact" className="text-[#F3F8F4] hover:text-[#F3F8B9] transition-colors">
+            <a href="#contact" className="text-[#F3F8F4] hover:text-white transition-colors">
               Contact
             </a>
           </div>
