@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Parallax } from "react-scroll-parallax"
-import { useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import { motion } from "motion/react"
 
 {
@@ -181,7 +181,7 @@ const HeroFirst = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-12 tracking-widest"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
@@ -215,7 +215,7 @@ const HeroFirst = () => {
               className="flex justify-center items-center sm:justify-start sm:items-start"
             >
               <Link href="/daerah">
-                <Button className="p-3 md:p-6 cursor-pointer rounded-4xl text-sm lg:text-md border border-white backdrop-blur-xs bg-transparent text-white hover:bg-white/10 transition">
+                <Button className="p-6 cursor-pointer rounded-4xl text-md lg:text-md border border-white backdrop-blur-xs bg-transparent text-white hover:bg-white/10 transition">
                   Mulai Menjelajah
                 </Button>
               </Link>
