@@ -79,11 +79,11 @@ export default function Footer() {
         </motion.div>
 
         <motion.div
-  className="w-full border-t border-gray-500 mb-6"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.4 }}
-></motion.div>
+          className="w-full border-t border-gray-500 mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        ></motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {/* Left - Navigation */}
@@ -148,11 +148,11 @@ export default function Footer() {
         </div>
 
         <motion.div
-  className="w-full border-t border-gray-500 mt-6 mb-4"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 1.2 }}
-></motion.div>
+          className="w-full border-t border-gray-500 mt-6 mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+        ></motion.div>
 
         {/* Bottom */}
         <motion.div

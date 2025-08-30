@@ -104,9 +104,13 @@ function Sidebar({ language, onLanguageChange }: { language: string, onLanguageC
   )
 }
 
+import { usePathname } from 'next/navigation'
+
 export default function Navbar() {
+  const pathname = usePathname()
   const [language, setLanguage] = useState("EN")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [logo, setLogo] = useState("/logo-navbar.svg")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,14 +123,24 @@ export default function Navbar() {
     }
   }, [])
 
+  useEffect(() => {
+    if (pathname == "/daerah") {
+      setLogo("/logo-navbar-dark.svg")
+    }
+    if (isScrolled) {
+      setLogo("/logo-navbar.svg")
+    }
+
+  }, [pathname, isScrolled])
+
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-[#282626]/50' : ''}`}>
       <div className="container mx-auto px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center fill-black">
             <Image
-              src="/logo-navbar.svg"
+              src={logo}
               alt="Antarala"
               width={100}
               height={40}
@@ -137,18 +151,27 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="/daerah" className="text-[#F3F8F4] hover:text-white transition-colors">
-              Daerah
-            </a>
-            <a href="/artikel" className="text-[#F3F8F4] hover:text-white transition-colors">
-              Artikel
-            </a>
-            <a href="#services" className="text-[#F3F8F4] hover:text-white transition-colors">
-              Services
-            </a>
-            <a href="#contact" className="text-[#F3F8F4] hover:text-white transition-colors">
-              Contact
-            </a>
+            <Link
+              href="/"
+              className={`${pathname === '/daerah' ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/daerah"
+              className={`${pathname === '/daerah' ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+            >              Daerah
+            </Link>
+            <Link
+              href="/bacaan"
+              className={`${pathname === '/daerah' ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+            >              Bacaan
+            </Link>
+            <Link
+              href="/game"
+              className={`${pathname === '/daerah' ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+            >              Mini Game
+            </Link>
           </div>
 
           {/* Right Side - Language & Search */}
@@ -158,8 +181,8 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="flex items-center space-x-1 cursor-pointer">
-                  <Public className="h-4 w-4 text-[#F3F8F4]" />
-                  <span className="text-[#F3F8F4]">{language}</span>
+                  <Public className={`h-4 w-4 ${pathname == '/daerah' ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
+                  <span className={`${pathname == '/daerah' ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`}>{language}</span>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -171,12 +194,12 @@ export default function Navbar() {
             </DropdownMenu>
 
             {/* Separator */}
-            <div className="h-6 w-px bg-white" />
+            <div className={`h-6 w-px bg-white ${pathname == '/daerah' ? `!bg-black` : ''} ${isScrolled ? `!bg-white` : ''}`} />
 
             {/* Search */}
             <div className="flex items-center">
               <Link href="/artikel">
-                <Search className="h-4 w-4 text-[#F3F8F4]" />
+              <Search className={`h-4 w-4 ${pathname == '/daerah' ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
               </Link>
             </div>
           </div>
