@@ -15,6 +15,7 @@ interface DestinationData {
   image: string
   number: string
   cardPosition: "left" | "right"
+  verticalText?: boolean
 }
 
 const destinations: DestinationData[] = [
@@ -29,6 +30,7 @@ const destinations: DestinationData[] = [
     description2:
       "Bentang alam Indonesia bukan sekadar lanskap, melainkan ruang hidup yang membentuk budaya, mitos, dan cara pandang masyarakatnya.",
     cardPosition: "right",
+    verticalText: true, // 👈 aktifkan teks vertikal
   },
   {
     id: 2,
@@ -115,24 +117,6 @@ const CarouselSection = () => {
 
         {/* Carousel */}
         <div className="relative w-full max-w-5xl mx-auto overflow-hidden">
-          {/* Vertical Text hanya di Gn. Slamet */}
-          <AnimatePresence>
-            {destination.name === "Gn. Slamet" && (
-              <motion.div
-                key={destination.id}
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="absolute left-[-60px] top-1/2 -translate-y-1/2 -rotate-90 origin-center z-20 hidden lg:block"
-              >
-                <h1 className="text-lg xl:text-xl font-bold text-black whitespace-nowrap">
-                  {destination.name}, {destination.location}
-                </h1>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* Images & Cards */}
           <div
             ref={carouselRef}
@@ -141,7 +125,7 @@ const CarouselSection = () => {
           >
             {destinations.map((dest) => (
               <div key={dest.id} className="min-w-full relative">
-                <div className="relative h-[260px] sm:h-[340px] md:h-[400px] lg:h-[440px] rounded-xl overflow-hidden">
+                <div className="relative h-[260px] sm:h-[340px] md:h-[420px] lg:h-[500px] rounded-xl overflow-hidden">
                   <Image
                     src={dest.image || "/placeholder.png"}
                     alt={dest.name}
@@ -149,19 +133,26 @@ const CarouselSection = () => {
                     className="object-cover"
                     quality={100}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+                  {/* Nomor + description2 */}
+                  {dest.description2 && (
+                    <div className="absolute left-6 bottom-8 max-w-[300px] text-white">
+                      <p className="text-lg font-semibold mb-2">{dest.number}</p>
+                      <h4 className="text-sm sm:text-base leading-relaxed">{dest.description2}</h4>
+                    </div>
+                  )}
 
                   {/* Info Card */}
                   <div
-                    className={`absolute bg-black/80 backdrop-blur-md border border-white/20 text-white rounded-xl p-4 w-[200px] sm:w-[240px] md:w-[280px] shadow-lg
-                    ${dest.cardPosition === "left" ? "bottom-4 left-4" : "bottom-4 right-4"}`}
+                    className={`absolute bg-[#1C1C1C] text-white rounded-xl p-5 w-[230px] sm:w-[260px] md:w-[300px] shadow-xl
+                    ${dest.cardPosition === "left" ? "bottom-6 left-6" : "bottom-6 right-6"}`}
                   >
-                    <h3 className="text-lg md:text-xl font-bold mb-2">{dest.name}</h3>
-                    <p className="text-sm md:text-base leading-relaxed mb-3">{dest.description}</p>
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">{dest.name}</h3>
+                    <p className="text-sm md:text-base leading-relaxed mb-4">{dest.description}</p>
                     <Button
                       variant="default"
                       size="sm"
-                      className="rounded px-3 py-1 text-sm border border-white bg-transparent text-white hover:bg-white/10 transition"
+                      className="rounded px-4 py-2 text-sm border border-white bg-transparent text-white hover:bg-white/10 transition"
                     >
                       Baca Selengkapnya
                     </Button>
@@ -171,16 +162,31 @@ const CarouselSection = () => {
             ))}
           </div>
 
+          {/* Vertical Text (khusus destinasi dengan verticalText=true) */}
+          <AnimatePresence>
+            {destination.verticalText && (
+              <motion.div
+                key={destination.id}
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="absolute left-[-90px] top-1/2 -translate-y-1/2 -rotate-90 origin-center z-30 hidden lg:block"
+              >
+                <h1 className="text-lg xl:text-xl font-bold text-black whitespace-nowrap">
+                  {destination.name}, {destination.location}
+                </h1>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Navigation */}
           <div className="flex items-center justify-center mt-3 gap-2">
-            {/* Prev button */}
             <button onClick={prevSlide} className="text-gray-400 hover:text-black transition p-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-
-            {/* Line indicator */}
             <div className="flex gap-2">
               {destinations.map((_, index) => (
                 <button
@@ -192,8 +198,6 @@ const CarouselSection = () => {
                 />
               ))}
             </div>
-
-            {/* Next button */}
             <button onClick={nextSlide} className="text-gray-400 hover:text-black transition p-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 lg:h-5 lg:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
