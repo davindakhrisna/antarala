@@ -4,14 +4,16 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { motion } from "motion/react"
+import { useIsland } from "@/components/daerah/island-context"
+import { ArrowUpward } from "@mui/icons-material"
 
 const Map = () => {
-  // Current top map layer, updated on hover over any region button
   const [currentUrl, setCurrentUrl] = useState("/daerah/map.svg")
-  // Keep previous url mounted briefly to crossfade out
   const [prevUrl, setPrevUrl] = useState<string | null>(null)
   const [isCrossfading, setIsCrossfading] = useState(false)
-  const button = "text-sm bg-[#677059] md:text-lg px-7 md:px-12 md:py-5 font-medium cursor-pointer transition-transform duration-200 hover:scale-[1.04] active:scale-95"
+  const button = "text-lg bg-[#677059] hover:bg-[#354025] md:text-xl lg:text-2xl px-8 md:px-18 md:py-5 lg:py-6 font-medium cursor-pointer transition-transform duration-200 hover:scale-[1.04] active:scale-95"
+  const { setSelected } = useIsland()
+  const [hide, setHide] = useState(true)
 
   // Clear previous layer after fade completes
   useEffect(() => {
@@ -37,12 +39,12 @@ const Map = () => {
       transition={{ duration: 0.4 }}
       className="relative p-8 md:p-18 bg-[#FAF4E1] justify-center overflow-hidden min-h-screen flex items-center"
     >
-      <div className="flex flex-col lg:text-center justify-center items-center w-full">
+      <div className="flex flex-col lg:text-justify justify-center items-center w-full">
         <motion.div
           initial={{ scale: 0.98, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative w-full max-w-4xl my-8 md:my-0 h-[140px] md:h-[380px] lg:h-[400px]"
+          className="relative w-full max-w-4xl my-8 md:my-2 h-[140px] md:h-[320px]"
         >
           {/* Crossfade stack: previous (fading out) and current (fading in) */}
           {prevUrl && (
@@ -96,45 +98,57 @@ const Map = () => {
           initial={{ y: 24, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-          className="max-w-3xl space-y-4"
+          className="flex flex-col justify-center items-center space-y-6"
         >
-          <h1 className="text-xl md:text-4xl font-bold tracking-wider">Beberapa Pulau di Indonesia</h1>
-          <p className="text-sm sm:text-lg">
+          <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold text-[#6A705B] tracking-wider w-full text-start lg:text-center">Beberapa Pulau di Indonesia</h1>
+          <p className={`${hide ? "" : "hidden lg:flex"} max-w-3xl xl:max-w-5xl text-[#6A705B] text-md sm:text-xl`}>
             Indonesia adalah negeri kepulauan yang membentang luas dari barat ke timur, menyimpan ribuan pulau dengan karakter, bahasa, dan tradisi yang berbeda. Setiap pulau bukan hanya daratan, tapi ruang hidup yang membentuk cara pandang, rasa, dan hubungan manusia dengan alam. Di antara laut yang memisahkan, tumbuh budaya yang saling menyambung, menjadikan Indonesia bukan satu cerita, melainkan ribuan narasi yang berjalan berdampingan.
           </p>
-          <div className="flex flex-row row-end-4 gap-2 justify-center items-center">
+          <div className={`${hide ? "hidden lg:flex" : ""} max-w-5xl flex gap-2 justify-center items-center`}>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }}
               className="flex flew-row flex-wrap lg:justify-center gap-3 sm:gap-4"
             >
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Sumatra.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Sumatra.svg")} onClick={() => setSelected("Sumatra")}>
                 Sumatra
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Jawa.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Jawa.svg")} onClick={() => setSelected("Jawa")}>
                 Jawa
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Kalimantan.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Kalimantan.svg")} onClick={() => setSelected("Kalimantan")}>
                 Kalimantan
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Bali.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Bali.svg")} onClick={() => setSelected("Bali")}>
                 Bali
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Sulawesi.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Sulawesi.svg")} onClick={() => setSelected("Sulawesi")}>
                 Sulawesi
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/Papua.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/Papua.svg")} onClick={() => setSelected("Papua")}>
                 Papua
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/NTT.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/NTT.svg")} onClick={() => setSelected("NTT")}>
                 NTT
               </Button>
-              <Button className={button} onMouseOver={() => swapTo("/daerah/NTB.svg")}>
+              <Button className={button} onMouseOver={() => swapTo("/daerah/NTB.svg")} onClick={() => setSelected("NTB")}>
                 NTB
               </Button>
             </motion.div>
           </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }}
+            className="flex w-full items-start justify-start"
+          >
+            <Button className="lg:hidden py-6 text-sm sm:text-lg" onClick={() => setHide(prev => !prev)}>
+              <span className="px-2">
+                <ArrowUpward /> {hide ? "Tampilkan Navigasi" : "Sembunyikan Navigasi"}
+              </span>
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
 

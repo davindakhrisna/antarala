@@ -84,90 +84,94 @@ export default function Footer() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-4"
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-        ></motion.div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:py-6 max-w-full relative z-10 space-y-2">
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center mt-4 lg:mt-6">
-          {/* Left - Navigation Links */}
           <motion.div
-            className="order-2 lg:order-1"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <nav className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
-              {navigationLinks.map((link, index) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-white hover:text-white-300 transition-all duration-300 text-base lg:text-lg font-medium relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              ))}
-            </nav>
-          </motion.div>
+            transition={{ duration: 1.2, delay: 0.4 }}
+          ></motion.div>
 
-          {/* Center - Logo */}
-          <motion.div
-            className="flex justify-center items-center order-1 lg:order-2"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="relative group">
-              <Image
-                src="/logo-navbar.svg"
-                alt="Antarala"
-                width={140}
-                height={56}
-                quality={100}
-                className="filter brightness-0 invert transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 rounded-lg blur-xl transition-opacity duration-300"></div>
-            </div>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
+            {/* Left - Navigation Links */}
+            <motion.div
+              className="order-2 lg:order-1"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <nav className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3">
+                {navigationLinks.map((link, index) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-white hover:text-white-300 transition-all duration-300 text-base lg:text-lg font-medium relative group"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                ))}
+              </nav>
+            </motion.div>
 
-          {/* Right - Social Media Icons */}
+            {/* Center - Logo */}
+            <motion.div
+              className="flex justify-center items-center order-1 lg:order-2"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="relative group">
+                <Image
+                  src="/logo-navbar.svg"
+                  alt="Antarala"
+                  width={140}
+                  height={56}
+                  quality={100}
+                  className="filter brightness-0 invert transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 rounded-lg blur-xl transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
+
+            {/* Right - Social Media Icons */}
+            <motion.div
+              className="flex justify-center lg:justify-end items-center order-3"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
+              <div className="flex space-x-6">
+                {socialLinks.map((social, index) => (
+                  <Link
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-2 rounded-full hover:bg-white/10"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
           <motion.div
-            className="flex justify-center lg:justify-end items-center order-3"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            <div className="flex space-x-6">
-              {socialLinks.map((social, index) => (
-                <Link
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-2 rounded-full hover:bg-white/10"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+            transition={{ duration: 1.2, delay: 1.2 }}
+          ></motion.div>
+
         </div>
-
-        <motion.div
-          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-4 lg:mt-6"
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 1.2, delay: 1.2 }}
-        ></motion.div>
 
         <motion.div
           className="flex flex-col sm:flex-row justify-between items-center mt-6 lg:mt-8 gap-4 sm:gap-0"
