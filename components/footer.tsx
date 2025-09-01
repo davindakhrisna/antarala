@@ -84,15 +84,13 @@ export default function Footer() {
           </p>
         </motion.div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:py-6 max-w-full relative z-10 space-y-2">
-
-          <motion.div
-            className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 1.2, delay: 0.4 }}
-          ></motion.div>
+        <motion.div
+          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-4"
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 1.2, delay: 0.4 }}
+        ></motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-4 lg:mt-6 py-6 lg:py-8">
           {/* Left - Navigation Links */}
@@ -195,3 +193,7 @@ export default function Footer() {
     </footer>
   )
 }
+
+
+
+
