@@ -1,14 +1,17 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
-import { Parallax } from 'react-scroll-parallax'
-import { motion } from 'motion/react';
-import { Separator } from "@/components/ui/separator";
+"use client"
 
-{/* Card Floater */ }
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
+import { Parallax } from "react-scroll-parallax"
+import { motion } from "framer-motion"
+import { Separator } from "@/components/ui/separator"
+
+{
+  /* Card Floater */
+}
 const CardFloat = () => {
-
   return (
     <motion.div
       initial={{ scale: 1.1, opacity: 0, y: 20, rotate: -3 }}
@@ -18,22 +21,22 @@ const CardFloat = () => {
         y: 0,
         rotate: 5,
         transition: {
-          type: 'spring',
+          type: "spring",
           stiffness: 100,
           damping: 15,
           mass: 0.5,
-          delay: 0.1
-        }
+          delay: 0.1,
+        },
       }}
       whileHover={{
         rotate: 0,
         transition: {
-          type: 'spring',
+          type: "spring",
           stiffness: 200,
-          damping: 15
-        }
+          damping: 15,
+        },
       }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, margin: "-100px" }}
       className="origin-center"
     >
       <Card className="bg-[#FFC200] border-0 relative overflow-hidden">
@@ -47,10 +50,10 @@ const CardFloat = () => {
               duration: 1,
               ease: [0.4, 0, 0.2, 1],
               times: [0, 0.6, 1],
-              delay: 0.2
-            }
+              delay: 0.2,
+            },
           }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         />
         <CardHeader>
           <h1 className="text-3xl md:text-3xl font-bold">Pendahuluan</h1>
@@ -58,8 +61,10 @@ const CardFloat = () => {
         </CardHeader>
         <CardContent>
           <p className="max-w-md text-md xl:text-lg">
-            Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
-            menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap
+            Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar.{" "}
+            <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
+            menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang
+            disingkap
           </p>
         </CardContent>
         <CardFooter>
@@ -68,9 +73,7 @@ const CardFloat = () => {
             variant="ghost"
             className="py-6 text-md border-1 border-black cursor-pointer hover:bg-amber-300 transition-colors"
           >
-            <Link href="/tentang">
-              Baca Selengkapnya
-            </Link>
+            <Link href="/tentang">Baca Selengkapnya</Link>
           </Button>
         </CardFooter>
       </Card>
@@ -78,18 +81,14 @@ const CardFloat = () => {
   )
 }
 
-{/* Hero Section */ }
+{
+  /* Hero Section */
+}
 const HeroSecond = () => {
-
   return (
-    <section
-      className="relative p-8 md:p-18 overflow-hidden min-h-screen flex flex-initial items-center bg-black"
-    >
+    <section className="relative p-8 md:p-18 overflow-hidden min-h-screen flex flex-initial items-center bg-black">
       {/* Image Here */}
-      <Parallax
-        speed={-20}
-        className="absolute inset-0 w-full h-full"
-      >
+      <Parallax speed={-20} className="absolute inset-0 w-full h-full">
         <Image
           src="/homepage/hero/hero2.png"
           alt="Indonesia Richness and Beautiful Landscape"
@@ -109,8 +108,10 @@ const HeroSecond = () => {
       />
 
       {/* Main Component */}
-      <Parallax speed={12} className="w-full h-full container mx-auto px-8 flex flex-col lg:flex-row items-center justify-center lg:justify-between relative z-10">
-
+      <Parallax
+        speed={12}
+        className="w-full h-full container mx-auto px-8 flex flex-col lg:flex-row items-center justify-center lg:justify-between relative z-10"
+      >
         {/* Card Float */}
         <div className="w-full lg:w-3/10 flex justify-center lg:justify-start mb-12 lg:mb-0">
           <Parallax speed={10} className="hidden lg:block">
@@ -119,7 +120,10 @@ const HeroSecond = () => {
         </div>
 
         {/* Main Content */}
-        <Parallax speed={-5} className="w-full lg:w-7/12 space-y-6 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
+        <Parallax
+          speed={-5}
+          className="w-full lg:w-7/12 space-y-6 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
+        >
           <motion.h1
             className="text-3xl leading-12 md:text-5xl text-white font-bold tracking-widest"
             initial={{ opacity: 0, y: 15 }}
@@ -129,13 +133,16 @@ const HeroSecond = () => {
               transition: {
                 duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delay: 0.3
-              }
+                delay: 0.3,
+              },
             }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
           >
             <span className="text-[#FFC200]">Bukan</span> arus UTAMA.
-            <span className="md:hidden"> Justru <span className="text-[#FFC200]">di sanalah</span> <span>MAKNA</span></span>
+            <span className="md:hidden">
+              {" "}
+              Justru <span className="text-[#FFC200]">di sanalah</span> <span>MAKNA</span>
+            </span>
           </motion.h1>
 
           <motion.h1
@@ -147,10 +154,10 @@ const HeroSecond = () => {
               transition: {
                 duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delay: 0.4
-              }
+                delay: 0.4,
+              },
             }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
           >
             Justru <span className="text-[#FFC200]">di sanalah</span> <span>MAKNA</span>
           </motion.h1>
@@ -164,17 +171,16 @@ const HeroSecond = () => {
               transition: {
                 duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delay: 0.5
-              }
+                delay: 0.5,
+              },
             }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
           >
             <span className="text-[#FFC200]">Indonesia</span> tak hanya yang kau tahu.
           </motion.h2>
         </Parallax>
       </Parallax>
-
-    </section >
+    </section>
   )
 }
 

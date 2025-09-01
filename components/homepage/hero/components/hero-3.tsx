@@ -1,15 +1,17 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
-import { Parallax } from 'react-scroll-parallax'
-import React from 'react';
-import { motion } from 'motion/react';
-import { Separator } from "@/components/ui/separator";
+"use client"
 
-{/* Card Floater */ }
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
+import { Parallax } from "react-scroll-parallax"
+import { motion } from "framer-motion"
+import { Separator } from "@/components/ui/separator"
+
+{
+  /* Card Floater */
+}
 const CardFloat = () => {
-
   return (
     <Parallax speed={25} className="flex">
       <motion.div
@@ -17,12 +19,17 @@ const CardFloat = () => {
         initial={{ x: 700, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 68, mass: 0.2, delay: 0.5 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: false, margin: "-100px" }}
       >
-        <h1 className="text-5xl hidden xl:block text-white tracking-widest text-center">Melihat <span className="text-[#FFC200]">Indonesia</span> lewat</h1>
-        <h1 className="text-5xl hidden xl:block text-white tracking-widest text-center"><span className="text-[#FFC200]">celah</span> yang jarang dibuka</h1>
+        <h1 className="text-5xl hidden xl:block text-white tracking-widest text-center">
+          Melihat <span className="text-[#FFC200]">Indonesia</span> lewat
+        </h1>
+        <h1 className="text-5xl hidden xl:block text-white tracking-widest text-center">
+          <span className="text-[#FFC200]">celah</span> yang jarang dibuka
+        </h1>
         <h1 className="text-3xl text-white tracking-widest text-center leading-12 xl:hidden">
-          Melihat <span className="text-[#FFC200]">Indonesia</span> lewat <span className="text-[#FFC200]">celah</span> yang jarang dibuka
+          Melihat <span className="text-[#FFC200]">Indonesia</span> lewat <span className="text-[#FFC200]">celah</span>{" "}
+          yang jarang dibuka
         </h1>
       </motion.div>
 
@@ -31,9 +38,8 @@ const CardFloat = () => {
         initial={{ x: 160, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 18, mass: 0.6, delay: 0.15 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: false, margin: "-100px" }}
       >
-
         <Card className="bg-[#FAF4E1]/30 border-0 text-white rounded-bl-none rounded-tl-none">
           <CardHeader>
             <h1 className="text-3xl md:text-4xl font-bold">Pendahuluan</h1>
@@ -41,8 +47,10 @@ const CardFloat = () => {
           </CardHeader>
           <CardContent>
             <p className="max-w-md text-sm xl:text-lg">
-              Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar. <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
-              menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang disingkap
+              Di balik riuhnya arus utama, Indonesia menyimpan ribuan cerita yang nyaris tak terdengar.{" "}
+              <span className="font-bold">ANTARALA</span> hadir sebagai ruang kecil yang merawat jejak-jejak itu,
+              menghidupkan kembali makna yang tersembunyi, dan mengajak kita melihat Indonesia dari celah yang jarang
+              disingkap
             </p>
           </CardContent>
           <CardFooter>
@@ -50,22 +58,18 @@ const CardFloat = () => {
               asChild
               className="py-6 text-md cursor-pointer bg-transparent backdrop-blur-2xl hover:bg-black/15 transition-colors"
             >
-              <Link href="/tentang">
-                Baca Selengkapnya
-              </Link>
+              <Link href="/tentang">Baca Selengkapnya</Link>
             </Button>
           </CardFooter>
         </Card>
       </motion.div>
-    </Parallax >
+    </Parallax>
   )
 }
 
 const CardResponsive = () => {
   return (
-    <Parallax
-      speed={15}
-    >
+    <Parallax speed={15}>
       <motion.div
         className="text-white space-y-6 md:space-y-3 lg:space-y-6 text-center sm:text-start"
         initial={{ opacity: 0, y: 20 }}
@@ -80,8 +84,8 @@ const CardResponsive = () => {
           viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Melihat <span className="text-[#FFC200]">Indonesia</span> lewat <span className="sm:hidden text-[#FFC200]">celah</span> yang jarang dibuka
-
+          Melihat <span className="text-[#FFC200]">Indonesia</span> lewat{" "}
+          <span className="sm:hidden text-[#FFC200]">celah</span> yang jarang dibuka
         </motion.h1>
         <motion.h1
           className="hidden sm:block md:text-4xl lg:text-5xl font-bold tracking-widest"
@@ -101,31 +105,26 @@ const CardResponsive = () => {
             transition: {
               duration: 0.6,
               ease: [0.4, 0, 0.2, 1],
-              delay: 0.5
-            }
+              delay: 0.5,
+            },
           }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
         >
           <span className="text-[#FFC200]">Kekayaan</span> budaya dunia ada di tangan kita.
         </motion.h2>
       </motion.div>
     </Parallax>
   )
-
 }
 
-{/* Hero Section */ }
+{
+  /* Hero Section */
+}
 const HeroThird = () => {
-
   return (
-    <section
-      className="relative p-8 md:p-18 overflow-hidden min-h-screen flex items-center bg-black"
-    >
+    <section className="relative p-8 md:p-18 overflow-hidden min-h-screen flex items-center bg-black">
       {/* Image Here */}
-      <Parallax
-        speed={-20}
-        className="absolute inset-0 w-full h-full"
-      >
+      <Parallax speed={-20} className="absolute inset-0 w-full h-full">
         <Image
           src="/homepage/hero/hero3.svg"
           alt="Indonesia Richness and Beautiful Landscape"
@@ -146,9 +145,7 @@ const HeroThird = () => {
 
       {/* Main Component */}
       <div className="w-full h-full flex justify-center relative z-10">
-
         <div className="w-fit relative flex">
-
           {/* Responsive Card */}
           <div className="relative z-10 lg:hidden">
             <CardResponsive />
@@ -158,11 +155,8 @@ const HeroThird = () => {
           <div className="hidden lg:inline-block relative z-10">
             <CardFloat />
           </div>
-
         </div>
-
       </div>
-
     </section>
   )
 }

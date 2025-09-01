@@ -145,9 +145,7 @@ const CardFloat = () => {
 }
 const HeroFirst = () => {
   return (
-    <section
-      className="relative p-8 md:p-18 overflow-hidden min-h-screen flex items-center bg-black"
-    >
+    <section className="relative p-8 md:p-18 overflow-hidden min-h-screen flex items-center bg-black">
       {/* Image Here */}
       <Parallax speed={-20} className="absolute inset-0 w-full h-full">
         <Image
@@ -170,9 +168,7 @@ const HeroFirst = () => {
 
       {/* Main Component */}
       <div className="w-full h-full flex flex-row  relative z-10">
-        <Parallax
-          speed={15}
-        >
+        <Parallax speed={15}>
           <motion.div
             className="text-white space-y-6 md:space-y-3 lg:space-y-6 text-center md:text-start"
             initial={{ opacity: 0, y: 20 }}

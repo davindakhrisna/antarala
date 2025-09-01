@@ -92,10 +92,10 @@ export default function Footer() {
           transition={{ duration: 1.2, delay: 0.4 }}
         ></motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center mt-4 lg:mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-4 lg:mt-6 py-6 lg:py-8">
           {/* Left - Navigation Links */}
           <motion.div
-            className="order-2 lg:order-1"
+            className="order-2 lg:order-1 flex items-center justify-center lg:justify-start h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -117,7 +117,7 @@ export default function Footer() {
 
           {/* Center - Logo */}
           <motion.div
-            className="flex justify-center items-center order-1 lg:order-2"
+            className="flex justify-center items-center order-1 lg:order-2 h-full"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -138,7 +138,7 @@ export default function Footer() {
 
           {/* Right - Social Media Icons */}
           <motion.div
-            className="flex justify-center lg:justify-end items-center order-3"
+            className="flex justify-center lg:justify-end items-center order-3 h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -162,7 +162,7 @@ export default function Footer() {
         </div>
 
         <motion.div
-          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-4 lg:mt-6"
+          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-0 "
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: false, amount: 0.3 }}
