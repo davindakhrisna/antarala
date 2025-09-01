@@ -93,7 +93,7 @@ const Situs = () => {
           <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold tracking-wide text-[#6A705B]">
             {info ? info.name : "Pilih salah satu pulau"}
           </h1>
-          <p className="text-md sm:text-xl text-muted-foreground">
+          <p className="text-md sm:text-xl text-muted-foreground text-justify lg:text-start">
             {info
               ? info.paragraph
               : "Klik tombol pulau di atas untuk menampilkan deskripsi singkat tentang pulau tersebut."}

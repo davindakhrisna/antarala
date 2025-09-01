@@ -2,7 +2,7 @@
 
 import { useIsland } from "@/components/daerah/island-context"
 import Image from "next/image"
-import { Card, CardHeader, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 
 class IslandInfo {
   name: string
@@ -115,17 +115,18 @@ const Budaya = () => {
   const info = selected ? islandInfos[selected] : undefined
 
   return info ? (
-    <section className="p-12 sm:p-24 bg-[#FAF4E1]">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-12 lg:gap-6 ">
+    <section className="p-0 bg-[#FAF4E1]">
+      <div className="hidden lg:grid  grid-cols-1 md:grid-cols-3 gap-2 md:gap-12 lg:gap-6 ">
 
         {/* 1 */}
-        <Card className="relative overflow-hidden flex justify-end">
+        <div className="hidden rounded-r-2xl md:flex relative overflow-hidden items-end py-6">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image}
               alt={info.name}
               fill
               className="object-cover"
+              priority
               sizes="(max-width: 768px) 100vw, 33vw"
             />
             <div className="absolute inset-0 bg-black/40" />
@@ -133,21 +134,38 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-lg p-4">{info.paragraph}</p>
           </CardFooter>
-        </Card>
+        </div>
 
         {/* 2 */}
-        <div className="space-y-4">
+        <div>
 
-          <Card className="h-58 flex p-4 justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
+          <Card className="h-86 flex mb-4 p-4 justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
             <CardHeader>
-              <h1 className="text-5xl font-bold">{info.name}</h1>
+              <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold">{info.name}</h1>
             </CardHeader>
             <CardFooter>
               <p className="text-lg">{info.paragraphName}</p>
             </CardFooter>
           </Card>
 
-          <Card className="relative h-96 overflow-hidden flex justify-end">
+          <Card className="flex md:hidden relative overflow-hidden justify-end">
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={info.image}
+                alt={info.name}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+            <CardFooter className="relative z-10 text-[#F4EEDC]">
+              <p className="text-lg p-4">{info.paragraph}</p>
+            </CardFooter>
+          </Card>
+
+          <Card className="relative lg:h-96 overflow-hidden flex justify-end">
             <div className="absolute inset-0 w-full h-full">
               <Image
                 src={info.image2}
@@ -155,7 +173,9 @@ const Budaya = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
+                priority
               />
+              <div className="backdrop-blur-sm absolute h-full w-full"></div>
               <div className="absolute inset-0 bg-black/40" />
             </div>
             <CardFooter className="relative z-10 text-[#F4EEDC]">
@@ -163,10 +183,26 @@ const Budaya = () => {
             </CardFooter>
           </Card>
 
+          <Card className="md:hidden relative overflow-hidden">
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={info.image3}
+                alt={info.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+            <CardFooter className="relative z-10 text-[#F4EEDC]">
+              <p className="text-lg p-4">{info.paragraph3}</p>
+            </CardFooter>
+          </Card>
         </div>
 
         {/* 3 */}
-        <Card className="relative overflow-hidden">
+        <div className="rounded-l-2xl hidden md:flex relative overflow-hidden items-end py-6">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image3}
@@ -174,16 +210,82 @@ const Budaya = () => {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"
+              priority
             />
             <div className="absolute inset-0 bg-black/40" />
           </div>
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-lg p-4">{info.paragraph3}</p>
           </CardFooter>
-        </Card>
+        </div>
 
       </div>
-    </section>
+
+      <div className="lg:hidden flex-col w-full justify-center items-center">
+
+        <div className="py-12 w-full px-18 flex flex-col justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
+          <CardHeader>
+            <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold">{info.name}</h1>
+          </CardHeader>
+          <CardContent>
+            <p className="text-md sm:text-xl">{info.paragraphName}</p>
+          </CardContent>
+        </div>
+
+        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src={info.image2}
+              alt={info.name}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+          </div>
+          <CardFooter className="relative z-10 text-[#F4EEDC]">
+            <p className="text-md sm:text-xl">{info.paragraph2}</p>
+          </CardFooter>
+        </div>
+
+        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src={info.image}
+              alt={info.name}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+          </div>
+          <CardFooter className="relative z-10 text-[#F4EEDC]">
+            <p className="text-md sm:text-xl">{info.paragraph}</p>
+          </CardFooter>
+        </div>
+
+        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src={info.image3}
+              alt={info.name}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+          </div>
+          <CardFooter className="relative z-10 text-[#F4EEDC]">
+            <p className="text-md sm:text-xl">{info.paragraph3}</p>
+          </CardFooter>
+        </div>
+
+
+      </div>
+    </section >
   ) : null
 }
 
