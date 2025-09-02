@@ -115,11 +115,11 @@ const Budaya = () => {
   const info = selected ? islandInfos[selected] : undefined
 
   return info ? (
-    <section className="p-0 bg-[#FAF4E1]">
+    <section className="p-0 lg:px-24 bg-[#FAF4E1]">
       <div className="hidden lg:grid  grid-cols-1 md:grid-cols-3 gap-2 md:gap-12 lg:gap-6 ">
 
         {/* 1 */}
-        <div className="hidden rounded-r-2xl md:flex relative overflow-hidden items-end py-6">
+        <Card className="hidden md:flex relative overflow-hidden justify-end">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image}
@@ -134,12 +134,12 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-lg p-4">{info.paragraph}</p>
           </CardFooter>
-        </div>
+        </Card>
 
         {/* 2 */}
         <div>
 
-          <Card className="h-86 flex mb-4 p-4 justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
+          <Card className="min-h-86 flex mb-4 p-4 justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
             <CardHeader>
               <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold">{info.name}</h1>
             </CardHeader>
@@ -165,7 +165,7 @@ const Budaya = () => {
             </CardFooter>
           </Card>
 
-          <Card className="relative lg:h-96 overflow-hidden flex justify-end">
+          <Card className="relative lg:min-h-96 overflow-hidden flex justify-end">
             <div className="absolute inset-0 w-full h-full">
               <Image
                 src={info.image2}
@@ -202,7 +202,7 @@ const Budaya = () => {
         </div>
 
         {/* 3 */}
-        <div className="rounded-l-2xl hidden md:flex relative overflow-hidden items-end py-6">
+        <Card className="hidden md:block relative overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image3}
@@ -217,7 +217,7 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-lg p-4">{info.paragraph3}</p>
           </CardFooter>
-        </div>
+        </Card>
 
       </div>
 
@@ -242,7 +242,7 @@ const Budaya = () => {
               priority
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+            <div className="absolute backdrop-blur-md inset-0 bg-black/40" />
           </div>
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph2}</p>
@@ -259,7 +259,7 @@ const Budaya = () => {
               priority
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+            <div className="absolute backdrop-blur-md inset-0 bg-black/40" />
           </div>
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph}</p>
@@ -276,7 +276,7 @@ const Budaya = () => {
               priority
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute backdrop-blur-sm inset-0 bg-black/40" />
+            <div className="absolute backdrop-blur-md inset-0 bg-black/40" />
           </div>
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph3}</p>

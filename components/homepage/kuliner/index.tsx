@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -9,11 +9,11 @@ const Kuliner = () => {
   const [startX, setStartX] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const sliderRef = useRef<HTMLDivElement>(null)
-  
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === 1 ? 0 : 1))
   }
-  
+
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? 1 : 0))
   }
@@ -30,10 +30,10 @@ const Kuliner = () => {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return
-    
+
     const currentX = e.touches[0].clientX
     const diff = startX - currentX
-    
+
     // If swipe is significant enough, change slide
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
@@ -52,7 +52,7 @@ const Kuliner = () => {
   }
 
   return (
-    <section className="relative min-h-screen bg-[#F5F1E8] overflow-hidden">
+    <section className="relative bg-[#F5F1E8] overflow-hidden">
       {/* Main content */}
       <div className="relative z-20 px-4 sm:px-6 md:px-12 lg:px-20 pt-20 pb-20 md:pt-35 md:pb-35">
         {/* Title */}
@@ -65,12 +65,12 @@ const Kuliner = () => {
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 flex items-center gap-2 sm:gap-4">
             Estetika rasa Indonesia
-             <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </h2>
         </motion.div>
-        
+
         {/* Desktop Layout - No Slider */}
         <div className="hidden lg:flex gap-6">
           {/* Small content - Pepes Ikan */}
@@ -97,7 +97,7 @@ const Kuliner = () => {
               </div>
             </div>
           </motion.div>
-          
+
           {/* Large content - Rumah Makan Bandung with overlay content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -114,7 +114,7 @@ const Kuliner = () => {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/60" />
-              
+
               {/* Bottom left title */}
               <div className="absolute bottom-6 left-6">
                 <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">Rumah Makan Bandung</h3>
@@ -122,7 +122,7 @@ const Kuliner = () => {
                   Baca Selengkapnya
                 </p>
               </div>
-              
+
               {/* Right side content */}
               <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
                 {/* Number at top */}
@@ -141,7 +141,7 @@ const Kuliner = () => {
                 >
                   04
                 </motion.div>
-                
+
                 {/* Vertical line below number */}
                 <motion.div
                   initial={{ height: 0 }}
@@ -150,7 +150,7 @@ const Kuliner = () => {
                   transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                   className="w-0.5 bg-white mb-3"
                 />
-                
+
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -163,7 +163,7 @@ const Kuliner = () => {
                   }}
                   className="w-2 h-2 bg-white rounded-full mb-4"
                 />
-                
+
                 {/* Text content below line */}
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
@@ -185,7 +185,7 @@ const Kuliner = () => {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Tablet Layout - Smaller Components */}
         <div className="hidden md:flex lg:hidden gap-4">
           {/* Small content - Pepes Ikan */}
@@ -212,7 +212,7 @@ const Kuliner = () => {
               </div>
             </div>
           </motion.div>
-          
+
           {/* Large content - Rumah Makan Bandung with overlay content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -229,7 +229,7 @@ const Kuliner = () => {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/60" />
-              
+
               {/* Bottom left title */}
               <div className="absolute bottom-4 left-4">
                 <h3 className="text-white text-xl font-bold mb-2">Rumah Makan Bandung</h3>
@@ -237,7 +237,7 @@ const Kuliner = () => {
                   Baca Selengkapnya
                 </p>
               </div>
-              
+
               {/* Right side content */}
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
                 {/* Number at top */}
@@ -256,7 +256,7 @@ const Kuliner = () => {
                 >
                   04
                 </motion.div>
-                
+
                 {/* Vertical line below number */}
                 <motion.div
                   initial={{ height: 0 }}
@@ -265,7 +265,7 @@ const Kuliner = () => {
                   transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                   className="w-0.5 bg-white mb-2"
                 />
-                
+
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -278,7 +278,7 @@ const Kuliner = () => {
                   }}
                   className="w-1.5 h-1.5 bg-white rounded-full mb-3"
                 />
-                
+
                 {/* Text content below line */}
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
@@ -299,11 +299,11 @@ const Kuliner = () => {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Mobile Layout - With Slider */}
         <div className="md:hidden">
           <div className="relative overflow-hidden rounded-lg">
-            <div 
+            <div
               ref={sliderRef}
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -336,7 +336,7 @@ const Kuliner = () => {
                   </div>
                 </motion.div>
               </div>
-              
+
               {/* Slide 2 - Rumah Makan Bandung */}
               <div className="min-w-full">
                 <motion.div
@@ -353,7 +353,7 @@ const Kuliner = () => {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/60" />
-                    
+
                     {/* Bottom left title */}
                     <div className="absolute bottom-6 left-6">
                       <h3 className="text-white text-xl font-bold mb-2">Rumah Makan Bandung</h3>
@@ -361,9 +361,9 @@ const Kuliner = () => {
                         Baca Selengkapnya
                       </p>
                     </div>
-                    
+
                     {/* Right side content - Hidden on mobile */}
-                    <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col items-center hidden sm:block">
+                    <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex-col items-center hidden sm:flex">
                       {/* Number at top */}
                       <motion.div
                         initial={{ scale: 0 }}
@@ -380,7 +380,7 @@ const Kuliner = () => {
                       >
                         04
                       </motion.div>
-                      
+
                       {/* Vertical line below number */}
                       <motion.div
                         initial={{ height: 0 }}
@@ -389,7 +389,7 @@ const Kuliner = () => {
                         transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                         className="w-0.5 bg-white mb-3"
                       />
-                      
+
                       <motion.div
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
@@ -402,7 +402,7 @@ const Kuliner = () => {
                         }}
                         className="w-2 h-2 bg-white rounded-full mb-4"
                       />
-                      
+
                       {/* Text content below line */}
                       <motion.div
                         initial={{ opacity: 0, x: 50 }}
@@ -425,10 +425,10 @@ const Kuliner = () => {
                 </motion.div>
               </div>
             </div>
-            
+
             {/* Slider Navigation */}
             <div className="flex justify-center mt-4 space-x-2">
-              <button 
+              <button
                 onClick={prevSlide}
                 className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
               >
@@ -439,13 +439,12 @@ const Kuliner = () => {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      currentSlide === index ? "bg-gray-800" : "bg-gray-400"
-                    }`}
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentSlide === index ? "bg-gray-800" : "bg-gray-400"
+                      }`}
                   />
                 ))}
               </div>
-              <button 
+              <button
                 onClick={nextSlide}
                 className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
               >
