@@ -27,10 +27,10 @@ function Sidebar({ language, onLanguageChange }: { language: string, onLanguageC
   const [isOpen, setIsOpen] = useState(false)
 
   const navigationLinks = [
+    { href: "/beranda", label: "Beranda" },
     { href: "/daerah", label: "Daerah" },
-    { href: "/artikel", label: "Artikel" },
-    { href: "#services", label: "Services" },
-    { href: "#contact", label: "Contact" },
+    { href: "/bacaan", label: "Bacaan" },
+    { href: "#contact", label: "Mini Game" },
   ]
 
   return (
@@ -108,7 +108,8 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const pathname = usePathname()
-  const specialRoute = ["/daerah",]
+  const specialRoutes = ["/daerah", "/bacaan"]
+  const isSpecialPath = specialRoutes.some((route) => (pathname || "").startsWith(route))
   const [language, setLanguage] = useState("EN")
   const [isScrolled, setIsScrolled] = useState(false)
   const [logo, setLogo] = useState("/logo-navbar.svg")
@@ -125,14 +126,14 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    if (specialRoute.includes(pathname)) {
+    if (isSpecialPath) {
       setLogo("/logo-navbar-dark.svg")
     }
     if (isScrolled) {
       setLogo("/logo-navbar.svg")
     }
 
-  }, [pathname, isScrolled, specialRoute])
+  }, [pathname, isScrolled, isSpecialPath])
 
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-[#282626]/50' : ''}`}>
@@ -154,25 +155,25 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-8">
             <Link
               href="/"
-              className={`${specialRoute.includes(pathname) ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+              className={`${isSpecialPath ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
             >
               Beranda
             </Link>
             <Link
               href="/daerah"
-              className={`${specialRoute.includes(pathname) ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+              className={`${isSpecialPath ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
             >
               Daerah
             </Link>
             <Link
               href="/bacaan"
-              className={`${specialRoute.includes(pathname) ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+              className={`${isSpecialPath ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
             >
               Bacaan
             </Link>
             <Link
               href="/game"
-              className={`${specialRoute.includes(pathname) ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
+              className={`${isSpecialPath ? 'text-black/60 hover:text-black ' : 'text-[#F3F8F4] hover:text-white'} ${isScrolled ? '!text-[#F3F8F4] !hover:text-white' : ''} transition-colors`}
             >
               Mini Game
             </Link>
@@ -185,8 +186,8 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="flex items-center space-x-1 cursor-pointer">
-                  <Public className={`h-4 w-4 ${specialRoute.includes(pathname) ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
-                  <span className={`${specialRoute.includes(pathname) ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`}>{language}</span>
+                  <Public className={`h-4 w-4 ${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
+                  <span className={`${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`}>{language}</span>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -198,12 +199,12 @@ export default function Navbar() {
             </DropdownMenu>
 
             {/* Separator */}
-            <div className={`h-6 w-px bg-white ${specialRoute.includes(pathname) ? `!bg-black` : ''} ${isScrolled ? `!bg-white` : ''}`} />
+            <div className={`h-6 w-px bg-white ${isSpecialPath ? `!bg-black` : ''} ${isScrolled ? `!bg-white` : ''}`} />
 
             {/* Search */}
             <div className="flex items-center">
               <Link href="/artikel">
-                <Search className={`h-4 w-4 ${specialRoute.includes(pathname) ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
+                <Search className={`h-4 w-4 ${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
               </Link>
             </div>
           </div>
