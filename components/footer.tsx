@@ -16,11 +16,11 @@ export default function Footer() {
   }
 
   const navigationLinks = [
-    { href: "/daerah", label: "Daerah" },
-    { href: "/artikel", label: "Artikel" },
-    { href: "#services", label: "Services" },
-    { href: "#contact", label: "Contact" },
-  ]
+  { href: "/", label: "Beranda" },
+  { href: "/daerah", label: "Daerah" },
+  { href: "/bacaan", label: "Bacaan" },
+  { href: "/game", label: "Mini Game" },
+]
 
   const socialLinks = [
     {
