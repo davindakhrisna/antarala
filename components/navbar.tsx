@@ -108,7 +108,7 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const pathname = usePathname()
-  const specialRoutes = ["/daerah", "/bacaan"]
+  const specialRoutes = ["/daerah", "/bacaan", "/game"]
   const isSpecialPath = specialRoutes.some((route) => (pathname || "").startsWith(route))
   const [language, setLanguage] = useState("EN")
   const [isScrolled, setIsScrolled] = useState(false)

@@ -2,6 +2,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 interface Card {
   id: number
@@ -157,25 +158,25 @@ const GameLayout: React.FC = () => {
   if (gameCompleted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
-        <div className="bg-white rounded-lg p-12 max-w-md mx-4 text-center shadow-xl border-4 border-dashed border-gray-400">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">Terima kasih,</h2>
-          <p className="text-gray-600 mb-8 leading-relaxed">
+        <div className="rounded-lg p-8 max-w-md mx-4 text-center shadow-xl bg-transparent border-4 border-dashed border-[#2C351F]">
+          <h2 className="text-4xl font-bold text-[#2C351F] mb-6">Terima kasih,</h2>
+          <p className="text-[#2C351F] mb-8 leading-relaxed">
             telah membuka satu per satu cerita kecil dari Indonesia. Semoga setiap kartu yang kamu balik, meninggalkan
             rasa yang tak mudah dilupakan. - <span className="font-semibold">Antarala</span>
           </p>
           <div className="flex gap-4 justify-center">
-            <button
+            <Button
               onClick={handlePlayAgain}
-              className="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700 transition-colors"
+              className="bg-[#2C351F] text-white cursor-pointer px-6 py-3 rounded-lg hover:bg-[#3a4426] transition-colors"
             >
               Main lagi
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleBackToHome}
-              className="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700 transition-colors"
+              className="bg-[#2C351F] cursor-pointer text-white px-6 py-3 hover:bg-[#3a4426] rounded-lg transition-colors"
             >
               Kembali ke halaman awal
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -184,7 +185,7 @@ const GameLayout: React.FC = () => {
 
   if (gameStarted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-amber-50 to-orange-50">
         {/* Attempts Popup */}
         {showAttemptsPopup && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -202,29 +203,28 @@ const GameLayout: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {/* Game Grid */}
-        <div className="container mx-auto px-6 py-8">
-          <div className="max-w-4xl mx-auto grid grid-cols-5 gap-4">
+        <div className="container p-6 md:p-18 mx-auto overflow-hidden">
+          <div className="max-w-3xl mx-auto grid grid-cols-5 gap-4">
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="relative aspect-square cursor-pointer"
+                className="relative !rounded-lg aspect-square cursor-pointer transform transition hover:scale-105"
                 onClick={() => handleCardClick(card.id)}
               >
                 <div className={`card-container ${card.flipped || card.matched ? "flipped" : ""}`}>
                   {/* Card Back */}
-                  <div className="card-face card-back">
-                    <span className="text-4xl text-white/80 font-serif italic">t</span>
+                  <div className="card-face card-back flex justify-center items-center">
+                    <span className="text-4xl md:text-6xl text-white/80 font-serif italic">t</span>
                   </div>
-                  
+
                   {/* Card Front */}
-                  <div className="card-face card-front">
+                  <div className="card-face card-front !rounded-lg">
                     {card.type === "image" ? (
-                      <div className="w-full h-full flex items-center justify-center p-2 bg-gray-100">
+                      <div className="w-full h-full flex items-center justify-center">
                         {imageErrors[card.id] ? (
-                          // Fallback when image fails to load
-                          <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 rounded p-2">
+                          <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 p-2">
                             <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
@@ -236,14 +236,14 @@ const GameLayout: React.FC = () => {
                             alt="Indonesian landmark"
                             width={100}
                             height={100}
-                            className="w-full h-full object-cover rounded"
+                            className="w-full h-full object-cover"
                             onError={() => handleImageError(card.id)}
                           />
                         )}
                       </div>
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#252E18] to-[#3a4426] p-3">
-                        <span className="text-white text-sm font-semibold text-center leading-tight">
+                      <div className="w-full h-full flex items-center justify-center rounded-lg bg-gradient-to-br from-[#252E18] to-[#3a4426] p-3">
+                        <span className="text-white text-xs md:text-lg lg:text-xl font-semibold text-center leading-tight">
                           {card.content}
                         </span>
                       </div>
@@ -261,7 +261,7 @@ const GameLayout: React.FC = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Custom styles for 3D card flip */}
         <style jsx>{`
           .card-container {
@@ -314,41 +314,14 @@ const GameLayout: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
-      <div className="flex items-center justify-center min-h-screen p-8">
-        <div className="relative" style={{ width: "1312px", maxWidth: "100vw", height: "625px", maxHeight: "90vh" }}>
-          {/* Checkered Border Pattern */}
-          <div className="absolute inset-0 p-4">
-            {/* Top border */}
-            <div className="absolute top-0 left-0 right-0 h-4 flex">
-              {[...Array(60)].map((_, i) => (
-                <div key={`top-${i}`} className={`flex-1 ${i % 2 === 0 ? "bg-[#6A725C]" : "bg-white"}`} />
-              ))}
-            </div>
-            {/* Bottom border */}
-            <div className="absolute bottom-0 left-0 right-0 h-4 flex">
-              {[...Array(60)].map((_, i) => (
-                <div key={`bottom-${i}`} className={`flex-1 ${i % 2 === 0 ? "bg-[#6A725C]" : "bg-white"}`} />
-              ))}
-            </div>
-            {/* Left border */}
-            <div className="absolute top-4 bottom-4 left-0 w-4 flex flex-col">
-              {[...Array(30)].map((_, i) => (
-                <div key={`left-${i}`} className={`flex-1 ${i % 2 === 0 ? "bg-[#6A725C]" : "bg-white"}`} />
-              ))}
-            </div>
-            {/* Right border */}
-            <div className="absolute top-4 bottom-4 right-0 w-4 flex flex-col">
-              {[...Array(30)].map((_, i) => (
-                <div key={`right-${i}`} className={`flex-1 ${i % 2 === 0 ? "bg-[#6A725C]" : "bg-white"}`} />
-              ))}
-            </div>
-          </div>
-          
-          {/* Main Game Board */}
-          <div className="absolute inset-4 bg-[#252E18] rounded overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br to-orange-50">
+      <div className="flex items-center justify-center min-h-screen p-8 xl:-rotate-1">
+        <div className="relative border-16 border-dashed border-[#676F59]" style={{ width: "1312px", maxWidth: "100vw", height: "625px", maxHeight: "90vh" }}>
+
+          {/* main game board */}
+          <div className="hidden xl:flex absolute inset-4 bg-[#252E18] rounded overflow-hidden">
             <div
-              className="relative w-full h-full flex items-center justify-between px-20"
+              className="relative w-full h-full flex items-center justify-between px-28"
               style={{ transform: "perspective(1200px) rotateY(-5deg)" }}
             >
               {/* Left Side - Title */}
@@ -357,17 +330,17 @@ const GameLayout: React.FC = () => {
                   <Image
                     src="/logo-navbar.svg"
                     alt="Antarala"
-                    width={320}
+                    width={220}
                     height={100}
-                    className="w-auto h-20 md:h-24 filter brightness-0 invert"
+                    className="w-xl h-20 md:h-24 filter brightness-0 invert"
                     priority
                   />
                 </div>
                 <p className="text-white/90 text-2xl font-light tracking-wider ml-2">Mini Game</p>
               </div>
-              
+
               {/* Right Side - Instructions Card */}
-              <div className="relative" style={{ transform: "rotateY(5deg) rotateZ(-2deg)" }}>
+              <div className="relative rotate-4">
                 <div className="absolute inset-0 bg-black/30 rounded-lg transform translate-x-3 translate-y-3" />
                 <div className="relative bg-amber-50 rounded-lg p-8 w-96 transform hover:translate-x-[-2px] hover:translate-y-[-2px] transition-transform">
                   <h2 className="text-3xl font-bold mb-4 text-gray-800 border-b-2 border-gray-400 pb-3">Petunjuk</h2>
@@ -376,13 +349,44 @@ const GameLayout: React.FC = () => {
                     sesuai. Temukan pasangan yang tepat dengan cepat dan raih skor tertinggi. Hindari kesalahan beruntun
                     agar tidak terkena penalti bantuan <span className="font-semibold italic">EFYD (E-Fi-Ye-De)</span>.
                   </p>
-                  <button
+                  <Button
                     onClick={() => setGameStarted(true)}
-                    className="w-full bg-[#252E18] text-white py-3 rounded-lg font-semibold hover:bg-[#3a4426] transition-colors transform hover:scale-105"
+                    className="cursor-pointer w-full bg-[#252E18] text-white py-6 rounded-lg font-semibold hover:bg-[#3a4426] text-lg transform transition hover:scale-105"
                   >
                     Mulai Mainkan
-                  </button>
+                  </Button>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* main game board - mobile */}
+          <div className="absolute xl:hidden flex flex-col items-stretch inset-4 bg-[#252E18] rounded overflow-hidden text-center">
+            <div className="flex-1 flex flex-col justify-center items-center p-4">
+              <div className="mb-4">
+                <Image
+                  src="/logo-navbar.svg"
+                  alt="Antarala"
+                  width={180}
+                  height={80}
+                  className="sm:w-sm filter brightness-0 invert"
+                  priority
+                />
+              </div>
+              <p className="text-white/90 text-2xl font-light tracking-wider">Mini Game</p>
+            </div>
+            <div className="flex-1 flex py-10 flex-col justify-center items-center bg-black/50 p-6">
+              <div className="space-y-6">
+                <h1 className="text-2xl sm:text-4xl font-semibold text-amber-50">Petunjuk</h1>
+                <p className="text-amber-50 text-justify text-sm sm:text-lg max-w-md">
+                  Permainan flip kartu ini mengajak kamu untuk menebak dan mengenali kekayaan Indonesia melalui tiga kategori utama: tempat, budaya, dan kuliner. Selamat bermain! - <span className="font-bold">Antarala</span>
+                </p>
+                <Button
+                  onClick={() => setGameStarted(true)}
+                  className="cursor-pointer bg-amber-50 text-[#252E18] w-full py-3 rounded-lg font-semibold hover:bg-amber-100 text-lg transition"
+                >
+                  Mulai Mainkan
+                </Button>
               </div>
             </div>
           </div>
