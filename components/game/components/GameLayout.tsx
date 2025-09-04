@@ -157,7 +157,7 @@ const GameLayout: React.FC = () => {
 
   if (gameCompleted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+      <div className="min-h-screen bg-amber-50 flex items-center justify-center">
         <div className="rounded-lg p-8 max-w-md mx-4 text-center shadow-xl bg-transparent border-4 border-dashed border-[#2C351F]">
           <h2 className="text-4xl font-bold text-[#2C351F] mb-6">Terima kasih,</h2>
           <p className="text-[#2C351F] mb-8 leading-relaxed">
@@ -185,7 +185,7 @@ const GameLayout: React.FC = () => {
 
   if (gameStarted) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-amber-50 to-orange-50">
+      <div className="min-h-screen flex justify-center items-center bg-amber-50">
         {/* Attempts Popup */}
         {showAttemptsPopup && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -314,7 +314,7 @@ const GameLayout: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br to-orange-50">
+    <div className="min-h-screen bg-orange-50">
       <div className="flex items-center justify-center min-h-screen p-8 xl:-rotate-1">
         <div className="relative border-16 border-dashed border-[#676F59]" style={{ width: "1312px", maxWidth: "100vw", height: "625px", maxHeight: "90vh" }}>
 
