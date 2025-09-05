@@ -215,9 +215,13 @@ const GameLayout: React.FC = () => {
               >
                 <div className={`card-container ${card.flipped || card.matched ? "flipped" : ""}`}>
                   {/* Card Back */}
-                  <div className="card-face card-back flex justify-center items-center">
-                    <span className="text-4xl md:text-6xl text-white/80 font-serif italic">t</span>
-                  </div>
+<div className="card-face card-back flex justify-center items-center">
+  <img 
+    src="/game/logo-t.svg" 
+    alt="Logo T" 
+    className="h-auto w-auto md:h-16" 
+  />
+</div>
 
                   {/* Card Front */}
                   <div className="card-face card-front !rounded-lg">
