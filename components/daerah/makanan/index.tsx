@@ -103,7 +103,7 @@ const Situs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="space-y-6 md:space-y-7 max-w-3xl text-center lg:text-start"
+          className="space-y-6 md:space-y-7 max-w-xl 2xl:max-w-2xl text-center lg:text-start"
         >
           <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-wide text-[#6A705B]">
             {info ? info.name : "Pilih salah satu pulau"}
