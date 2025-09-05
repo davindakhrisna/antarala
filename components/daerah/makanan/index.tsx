@@ -78,7 +78,7 @@ const Situs = () => {
 
   return info ? (
     <section className="p-12 sm:p-24 sm:!py-14 bg-[#FAF4E1]">
-      <div className="flex flex-col xl:flex-row justify-center px-12 xl:px-24 p-8 items-center gap-2 md:gap-12">
+      <div className="flex flex-col xl:flex-row justify-center px-12 2xl:px-24 p-8 items-center gap-2 md:gap-12">
 
         {/* Image - kept on the left for larger screens */}
         <motion.div
@@ -86,7 +86,7 @@ const Situs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative flex justify-center items-center w-full xl:pr-18 mb-8 md:mb-0 lg:w-auto xl:justify-start"
+          className="relative flex justify-center items-center w-full 2xl:pr-18 mb-8 md:mb-0 lg:w-auto xl:justify-start"
         >
           <Image
             src={info.image}
