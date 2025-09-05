@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { useIsland } from "@/components/daerah/island-context"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "motion/react"
 
 class IslandInfo {
   name: string
@@ -89,7 +90,13 @@ const Situs = () => {
       <div className="flex flex-col-reverse xl:flex-row justify-center px-12 xl:px-24 p-8 items-center gap-2 md:gap-12">
 
         {/* Text */}
-        <div className="space-y-6 md:space-y-7 max-w-3xl text-center lg:text-start">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="space-y-6 md:space-y-7 max-w-3xl text-center lg:text-start"
+        >
           <h1 className="text-3xl sm:text-6xl xl:text-8xl font-bold tracking-wide text-[#6A705B]">
             {info ? info.name : "Pilih salah satu pulau"}
           </h1>
@@ -101,10 +108,16 @@ const Situs = () => {
           <Button asChild className="bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6" disabled={!info}>
             <Link href={info.link}>Baca Selengkapnya</Link>
           </Button>
-        </div>
+        </motion.div>
 
         {/* Image */}
-        <div className="relative flex justify-center items-center w-10/10 lg:pl-24 mb-8 md:mb-0 lg:w-auto lg:justify-end">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="relative flex justify-center items-center w-10/10 lg:pl-24 mb-8 md:mb-0 lg:w-auto lg:justify-end"
+        >
           <Image
             src={info.image}
             width={1}
@@ -119,7 +132,7 @@ const Situs = () => {
             alt="Image Situs Kecil"
             className="w-5/10 sm:w-3/10 md:w-5/12 object-fit border-16 border-[#FAF4E1] hidden lg:block absolute bottom-0 rounded-full lg:left-0"
           />
-        </div>
+        </motion.div>
 
       </div>
     </section>

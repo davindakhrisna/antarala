@@ -181,7 +181,7 @@ const Kuliner = () => {
                     stiffness: 200,
                     damping: 10,
                   }}
-                  className="text-xl font-bold text-white mb-4"
+                  className="hidden xl:block text-xl font-bold text-white mb-4"
                 >
                   04
                 </motion.div>
@@ -192,7 +192,7 @@ const Kuliner = () => {
                   whileInView={{ height: "3rem" }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                  className="w-0.5 bg-white mb-3"
+                  className="w-0.5 bg-white mb-3 hidden xl:block"
                 />
 
                 <motion.div
@@ -205,7 +205,7 @@ const Kuliner = () => {
                     type: "spring",
                     stiffness: 300,
                   }}
-                  className="w-2 h-2 bg-white rounded-full mb-4"
+                  className="w-2 h-2 bg-white hidden xl:block rounded-full mb-4"
                 />
 
                 {/* Text content below line */}
@@ -214,7 +214,7 @@ const Kuliner = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
-                  className="text-right"
+                  className="text-right hidden xl:block"
                 >
                   <h4 className="text-lg font-bold text-white mb-2">Kuliner Nusantara</h4>
                   <p className="text-sm text-white/90 max-w-xs leading-relaxed mb-3">
@@ -300,7 +300,7 @@ const Kuliner = () => {
                     stiffness: 200,
                     damping: 10,
                   }}
-                  className="text-xl font-bold text-white mb-3"
+                  className="hidden xl:block text-xl font-bold text-white mb-3"
                 >
                   04
                 </motion.div>
@@ -311,7 +311,7 @@ const Kuliner = () => {
                   whileInView={{ height: "2.5rem" }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                  className="w-0.5 bg-white mb-2"
+                  className="hidden xl:block w-0.5 bg-white mb-2"
                 />
 
                 <motion.div
@@ -324,7 +324,7 @@ const Kuliner = () => {
                     type: "spring",
                     stiffness: 300,
                   }}
-                  className="w-1.5 h-1.5 bg-white rounded-full mb-3"
+                  className="w-1.5 h-1.5 bg-white hidden xl:block rounded-full mb-3"
                 />
 
                 {/* Text content below line */}
@@ -333,7 +333,7 @@ const Kuliner = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
-                  className="text-right"
+                  className="text-right hidden xl:block"
                 >
                   <h4 className="text-base font-bold text-white mb-2">Kuliner Nusantara</h4>
                   <p className="text-xs text-white/90 max-w-[180px] leading-relaxed mb-2">

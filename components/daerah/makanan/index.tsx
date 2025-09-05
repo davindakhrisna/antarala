@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { useIsland } from "@/components/daerah/island-context"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "motion/react"
 
 class IslandInfo {
   name: string
@@ -80,7 +81,13 @@ const Situs = () => {
       <div className="flex flex-col xl:flex-row justify-center px-12 xl:px-24 p-8 items-center gap-2 md:gap-12">
 
         {/* Image - kept on the left for larger screens */}
-        <div className="relative flex justify-center items-center w-full xl:pr-18 mb-8 md:mb-0 lg:w-auto xl:justify-start">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative flex justify-center items-center w-full xl:pr-18 mb-8 md:mb-0 lg:w-auto xl:justify-start"
+        >
           <Image
             src={info.image}
             width={1}
@@ -88,10 +95,16 @@ const Situs = () => {
             alt="Gambar Makanan Khas"
             className="w-full md:w-10/10  xl:w-lg xl:py-20"
           />
-        </div>
+        </motion.div>
 
         {/* Text */}
-        <div className="space-y-6 md:space-y-7 max-w-3xl text-center lg:text-start">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="space-y-6 md:space-y-7 max-w-3xl text-center lg:text-start"
+        >
           <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-wide text-[#6A705B]">
             {info ? info.name : "Pilih salah satu pulau"}
           </h1>
@@ -103,7 +116,7 @@ const Situs = () => {
           <Button asChild className="bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6" disabled={!info}>
             <Link href={info.link}>Baca Selengkapnya</Link>
           </Button>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { useIsland } from "@/components/daerah/island-context"
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
+import { motion } from "motion/react"
 
 class IslandInfo {
   name: string
@@ -116,29 +117,35 @@ const Budaya = () => {
   const info = selected ? islandInfos[selected] : undefined
 
   return info ? (
-    <section className="p-0 lg:px-24 bg-[#FAF4E1]">
+    <motion.section
+      className="p-0 lg:px-24 bg-[#FAF4E1]"
+    >
       <div className="hidden lg:grid  grid-cols-1 md:grid-cols-3 gap-2 md:gap-12 lg:gap-6 ">
 
         {/* 1 */}
-        <Card className="hidden md:flex relative overflow-hidden justify-end">
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src={info.image}
-              alt={info.name}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-          <CardFooter className="relative z-10 text-[#F4EEDC]">
-            <p className="text-lg p-4">{info.paragraph}</p>
-          </CardFooter>
-        </Card>
+        <motion.div
+        >
+          <Card className="hidden md:flex h-full relative overflow-hidden justify-end">
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={info.image}
+                alt={info.name}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+            <CardFooter className="relative z-10 text-[#F4EEDC]">
+              <p className="text-lg p-4">{info.paragraph}</p>
+            </CardFooter>
+          </Card>
+        </motion.div>
 
         {/* 2 */}
-        <div>
+        <motion.div
+        >
 
           <Card className="min-h-86 flex mb-4 p-4 justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
             <CardHeader>
@@ -200,40 +207,47 @@ const Budaya = () => {
               <p className="text-lg p-4">{info.paragraph3}</p>
             </CardFooter>
           </Card>
-        </div>
+        </motion.div>
 
         {/* 3 */}
-        <Card className="hidden md:block relative overflow-hidden">
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src={info.image3}
-              alt={info.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-          <CardFooter className="relative z-10 text-[#F4EEDC]">
-            <p className="text-lg p-4">{info.paragraph3}</p>
-          </CardFooter>
-        </Card>
+        <motion.div
+        >
+          <Card className="hidden md:block h-full relative overflow-hidden">
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={info.image3}
+                alt={info.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+            <CardFooter className="relative z-10 text-[#F4EEDC]">
+              <p className="text-lg p-4">{info.paragraph3}</p>
+            </CardFooter>
+          </Card>
+        </motion.div>
 
       </div>
 
       <div className="lg:hidden flex-col w-full justify-center items-center">
 
-        <div className="py-12 w-full px-18 flex flex-col justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]">
+        <motion.div
+          className="py-12 w-full px-18 flex flex-col justify-center bg-gradient-to-tr from-[#403024] to-[#8F582F] text-[#F4EEDC]"
+        >
           <CardHeader>
             <h1 className="text-2xl sm:text-5xl xl:text-6xl font-bold">{info.name}</h1>
           </CardHeader>
           <CardContent>
             <p className="text-md sm:text-xl">{info.paragraphName}</p>
           </CardContent>
-        </div>
+        </motion.div>
 
-        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+        <motion.div
+          className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden"
+        >
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image2}
@@ -248,9 +262,11 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph2}</p>
           </CardFooter>
-        </div>
+        </motion.div>
 
-        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+        <motion.div
+          className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden"
+        >
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image}
@@ -265,9 +281,11 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph}</p>
           </CardFooter>
-        </div>
+        </motion.div>
 
-        <div className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden">
+        <motion.div
+          className="py-8 w-full px-18 flex flex-col justify-center relative overflow-hidden"
+        >
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={info.image3}
@@ -282,11 +300,11 @@ const Budaya = () => {
           <CardFooter className="relative z-10 text-[#F4EEDC]">
             <p className="text-md sm:text-xl">{info.paragraph3}</p>
           </CardFooter>
-        </div>
+        </motion.div>
 
 
       </div>
-    </section >
+    </motion.section >
   ) : null
 }
 
