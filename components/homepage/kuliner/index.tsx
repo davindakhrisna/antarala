@@ -1,14 +1,50 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
+import { createClient } from "@/prismicio"
+import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const Kuliner = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [startX, setStartX] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
+  const [pepesIkanUid, setPepesIkanUid] = useState<string | null>(null)
+  const [rotiGOUid, setRotiGoUid] = useState<string | null>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const client = createClient();
+      try {
+        // Ambil artikel dengan UID "pepesikan"
+        const doc = await client.getByUID("article", "pepesikan", );
+        if (doc) {
+          setPepesIkanUid(doc.uid);
+        }
+      } catch (error) {
+        console.error("Error fetching article:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const client = createClient();
+      try {
+        // Ambil artikel dengan UID "pepesikan"
+        const doc = await client.getByUID("article", "rotigo", );
+        if (doc) {
+          setRotiGoUid(doc.uid);
+        }
+      } catch (error) {
+        console.error("Error fetching article:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === 1 ? 0 : 1))
@@ -63,11 +99,14 @@ const Kuliner = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8 md:mb-12"
         >
+          
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 flex items-center gap-2 sm:gap-4">
-            Estetika rasa Indonesia
-            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link href="/bacaan">Estetika rasa Indonesia</Link>
+             <Link href="/bacaan">
+             <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
+             </Link>
           </h2>
         </motion.div>
 
@@ -91,14 +130,16 @@ const Kuliner = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6">
                 <h3 className="text-white text-xl font-bold mb-2">Pepes Ikan</h3>
-                <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
-                  Baca Selengkapnya
-                </p>
+                  <Link href={`/bacaan/${pepesIkanUid}`}>
+                    <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
+                      Baca Selengkapnya
+                    </p>
+                  </Link>
               </div>
             </div>
           </motion.div>
 
-          {/* Large content - Rumah Makan Bandung with overlay content */}
+          {/* Large content - Toko Roti Go Purwokerto with overlay content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,8 +149,8 @@ const Kuliner = () => {
           >
             <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
               <Image
-                src="/homepage/kuliner/rumah-makan-bandung.svg"
-                alt="Rumah Makan Bandung"
+                src="/homepage/kuliner/rotigo.svg"
+                alt="Roti Go"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -117,10 +158,13 @@ const Kuliner = () => {
 
               {/* Bottom left title */}
               <div className="absolute bottom-6 left-6">
-                <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">Rumah Makan Bandung</h3>
+                <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">Toko Roti Go Purwokerto</h3>
+                <Link href={`/bacaan/${rotiGOUid}`}>
                 <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
                   Baca Selengkapnya
                 </p>
+                </Link>
+                
               </div>
 
               {/* Right side content */}
@@ -206,14 +250,16 @@ const Kuliner = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <h3 className="text-white text-lg font-bold mb-2">Pepes Ikan</h3>
-                <p className="text-white text-xs font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
-                  Baca Selengkapnya
-                </p>
+                <Link href={`/bacaan/${pepesIkanUid}`}>
+                    <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
+                      Baca Selengkapnya
+                    </p>
+                  </Link>
               </div>
             </div>
           </motion.div>
 
-          {/* Large content - Rumah Makan Bandung with overlay content */}
+          {/* Large content - Toko Roti Go Purwokerto with overlay content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -223,8 +269,8 @@ const Kuliner = () => {
           >
             <div className="relative h-72 rounded-lg overflow-hidden group cursor-pointer">
               <Image
-                src="/homepage/kuliner/rumah-makan-bandung.svg"
-                alt="Rumah Makan Bandung"
+                src="/homepage/kuliner/rotigo.svg"
+                alt="Roti Go"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -232,10 +278,12 @@ const Kuliner = () => {
 
               {/* Bottom left title */}
               <div className="absolute bottom-4 left-4">
-                <h3 className="text-white text-xl font-bold mb-2">Rumah Makan Bandung</h3>
-                <p className="text-white text-xs font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
+                <h3 className="text-white text-xl font-bold mb-2">Toko Roti Go Purwokerto</h3>
+                <Link href={`/bacaan/${rotiGOUid}`}>
+                <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
                   Baca Selengkapnya
                 </p>
+                </Link>
               </div>
 
               {/* Right side content */}
@@ -329,15 +377,17 @@ const Kuliner = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className="absolute bottom-6 left-6">
                       <h3 className="text-white text-xl font-bold mb-2">Pepes Ikan</h3>
-                      <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
-                        Baca Selengkapnya
-                      </p>
+                      <Link href={`/bacaan/${pepesIkanUid}`}>
+                        <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
+                           Baca Selengkapnya
+                        </p>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Slide 2 - Rumah Makan Bandung */}
+              {/* Slide 2 - Toko Roti Go Purwokerto */}
               <div className="min-w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -347,8 +397,8 @@ const Kuliner = () => {
                 >
                   <div className="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
                     <Image
-                      src="/homepage/kuliner/rumah-makan-bandung.svg"
-                      alt="Rumah Makan Bandung"
+                      src="/homepage/kuliner/rotigo.svg"
+                      alt="Roti Go"
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -356,10 +406,12 @@ const Kuliner = () => {
 
                     {/* Bottom left title */}
                     <div className="absolute bottom-6 left-6">
-                      <h3 className="text-white text-xl font-bold mb-2">Rumah Makan Bandung</h3>
-                      <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
-                        Baca Selengkapnya
-                      </p>
+                      <h3 className="text-white text-xl font-bold mb-2">Toko Roti Go Purwokerto</h3>
+                     <Link href={`/bacaan/${rotiGOUid}`}>
+                        <p className="text-white text-sm font-medium underline cursor-pointer hover:text-white/80 transition-colors duration-300">
+                          Baca Selengkapnya
+                        </p>
+                      </Link>
                     </div>
 
                     {/* Right side content - Hidden on mobile */}

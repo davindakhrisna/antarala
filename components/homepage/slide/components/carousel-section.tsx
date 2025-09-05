@@ -1,4 +1,6 @@
 "use client"
+
+import Link from "next/link"
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -124,8 +126,13 @@ const CarouselSection = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
+            <Link href="/daerah">
             <span className="text-xl md:text-2xl lg:text-3xl">Bentang makna Indonesia</span>
-            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+            </Link>
+            <Link href="/daerah">
+             <ChevronRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+             </Link>
+
           </motion.div>
 
           {/* Carousel Container with extra space for cards */}
@@ -296,13 +303,16 @@ const CarouselSection = () => {
                           viewport={{ once: false, amount: 0.3 }}
                           transition={{ duration: 0.6, delay: 1.3 }}
                         >
-                          <Button
+                          <Link href="/daerah">
+                           <Button
                             size="sm"
                             variant="ghost"
                             className="rounded-md border border-white text-white hover:bg-white/20 hover:text-white transition text-sm w-full sm:w-auto"
                           >
                             Baca Selengkapnya
                           </Button>
+                          </Link>
+                          
                         </motion.div>
                       </motion.div>
                     </div>

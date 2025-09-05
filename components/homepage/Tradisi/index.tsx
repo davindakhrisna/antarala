@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import { motion } from "motion/react"
 
 export default function Tradisi() {
@@ -23,16 +24,19 @@ export default function Tradisi() {
         <div className="flex-1 max-w-2xl">
           {/* Main Title */}
           <motion.h1
-            className="text-white flex justify-center md:justify-start text-xl sm:text-xl md:text-2xl lg:text-5xl font-bold mb-6 sm:mb-8 md:mb-12 items-center gap-2 sm:gap-4 whitespace-nowrap"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-white flex justify-center md:justify-start text-xl sm:text-xl md:text-2xl lg:text-5xl font-bold mb-6 sm:mb-8 md:mb-12 items-center gap-2 sm:gap-4 whitespace-nowrap"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Rupa tradisi Indonesia
-            <svg className="hidden md:block w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+              <Link href="/daerah">Rupa tradisi Indonesia</Link>
+              <Link href="/daerah">
+              <svg className="hidden md:block w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              </Link>
+            
           </motion.h1>
 
           {/* Content Card */}
@@ -62,6 +66,7 @@ export default function Tradisi() {
               Jelajahi Budaya dan Tradisi di Indonesia yang memiliki seni indah disetiap sudut NUSANTARA yang bahkan
               terlupakan oleh ruang dan waktu.
             </motion.p>
+            <Link href="/daerah">
             <motion.button
               className="border border-white/50 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-white/10 transition-colors duration-300 text-sm sm:text-base"
               initial={{ opacity: 0, x: -30 }}
@@ -71,6 +76,7 @@ export default function Tradisi() {
             >
               Baca Selengkapnya
             </motion.button>
+            </Link>
           </motion.div>
         </div>
 
