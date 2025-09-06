@@ -73,7 +73,7 @@ const CardFloat = () => {
             variant="ghost"
             className="py-6 text-md border-1 border-black cursor-pointer hover:bg-amber-300 transition-colors"
           >
-            <Link href="/tentang">Baca Selengkapnya</Link>
+            <Link href="#bentang">Baca Selengkapnya</Link>
           </Button>
         </CardFooter>
       </Card>

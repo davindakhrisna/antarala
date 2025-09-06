@@ -58,7 +58,7 @@ const CardFloat = () => {
               asChild
               className="py-6 text-md cursor-pointer bg-transparent backdrop-blur-2xl hover:bg-black/15 transition-colors"
             >
-              <Link href="/tentang">Baca Selengkapnya</Link>
+              <Link href="#bentang">Baca Selengkapnya</Link>
             </Button>
           </CardFooter>
         </Card>

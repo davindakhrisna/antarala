@@ -21,7 +21,7 @@ class IslandInfo {
     this.uid = uid
     this.section = section
   }
-  
+
   // Getter untuk link yang dinamis dengan anchor
   get link() {
     return this.uid ? `/bacaan/${this.uid}#${this.section}` : "#";
@@ -107,32 +107,32 @@ const Situs = () => {
       try {
         const client = createClient()
         const newIslandInfos: Record<string, IslandInfo> = {}
-        
+
         // Ambil semua dokumen tipe "article"
         const allArticles = await client.getAllByType("article")
-        console.log("All articles:", allArticles.map(a => ({ 
-          uid: a.uid, 
+        console.log("All articles:", allArticles.map(a => ({
+          uid: a.uid,
           title_makanan: a.data.title_makanan,
-          tags: a.tags 
+          tags: a.tags
         })))
-        
+
         // Ambil UID untuk setiap pulau
         for (const [island, foodName] of Object.entries(islandToFoodNameMap)) {
           try {
             console.log(`Looking for article with title_makanan: ${foodName}`)
-            
+
             // Cari artikel yang sesuai berdasarkan title_makanan dan tag
             const article = allArticles.find(doc => {
               // Periksa apakah dokumen memiliki tag yang sesuai
               const hasCorrectTag = doc.tags && doc.tags.includes(islandToTagMap[island])
-              
+
               // Akses field title_makanan dengan tipe Rich Text
               const titleText = doc.data.title_makanan?.[0]?.text || ""
               const hasCorrectTitle = titleText.toLowerCase() === foodName.toLowerCase()
-              
+
               return hasCorrectTag && hasCorrectTitle
             })
-            
+
             if (article) {
               console.log(`Found article for ${island}:`, article.uid)
               const data = islandData[island]
@@ -168,7 +168,7 @@ const Situs = () => {
             )
           }
         }
-        
+
         setIslandInfos(newIslandInfos)
       } catch (err) {
         console.error("Error in fetchUids:", err)
@@ -199,33 +199,33 @@ const Situs = () => {
   }
 
   return info ? (
-    <section id="makanan" className="p-8 py-32 md:p-16 lg:p-24 bg-[#F2EDDA] text-[#676F59] relative xl:p-32 flex flex-col-reverse xl:flex-row-reverse items-center justify-center xl:gap-16">
+    <section id="makanan" className="p-8 py-32 xl:mt-0 md:p-16 lg:p-24 bg-[#F2EDDA] text-[#676F59] relative xl:p-32 flex flex-col-reverse xl:flex-row-reverse items-center justify-center xl:gap-16">
       {/* Text */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        className="w-full xl:flex-1 min-w-0 px-8 lg:px-0 lg:max-w-3xl xl:max-w-lg 2xl:max-w-3xl pt-64 xl:pt-0"
+        className="w-full xl:flex-1 min-w-0 px-8 lg:px-0 lg:max-w-3xl xl:max-w-lg 2xl:max-w-3xl pt-12 xl:pt-0"
       >
-        <h1 className="text-4xl xl:text-5xl 2xl:text-7xl font-bold text-center sm:text-justify">{info.name}</h1>
+        <h1 className="text-4xl xl:text-5xl 2xl:text-7xl font-bold text-start xl:text-justify">{info.name}</h1>
         <p className="mt-4 text-md md:text-xl text-justify">{info.paragraph}</p>
-        <Button 
-          asChild 
-          className="mt-8 bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6" 
+        <Button
+          asChild
+          className="mt-8 bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6"
           disabled={!info.uid}
         >
           <Link href={info.link}>Baca Selengkapnya</Link>
         </Button>
       </motion.div>
-      
+
       {/* Image */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-full xl:w-5/12 absolute xl:relative top-0 h-[200px] lg:h-[300px] xl:h-[400px]"
+        className="w-full xl:w-5/12 rounded-2xl relative top-0 h-[200px] lg:h-[300px] xl:h-[400px]"
       >
         <div className="h-full relative overflow-hidden xl:rounded-2xl">
           <div className="absolute inset-0">
@@ -234,7 +234,7 @@ const Situs = () => {
               alt={info.name}
               fill
               sizes="(min-width: 1280px) 50vw, 100vw"
-              className="object-cover object-center"
+              className="object-cover object-center rounded-2xl"
               priority
             />
           </div>

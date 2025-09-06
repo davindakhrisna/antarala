@@ -87,7 +87,7 @@ const CarouselSection = () => {
   const destination = destinations[currentIndex]
 
   return (
-    <section className="bg-[#FAF4E1] flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 lg:p-10">
+    <section id="bentang" className="bg-[#FAF4E1] flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 lg:p-10">
       <div className="py-24 max-w-6xl mx-auto w-full space-y-8">
         {/* Heading */}
         <motion.header
@@ -127,11 +127,11 @@ const CarouselSection = () => {
             transition={{ duration: 0.45, delay: 0.12 }}
           >
             <Link href="/daerah">
-            <span className="text-xl md:text-2xl lg:text-3xl">Bentang makna Indonesia</span>
+              <span className="text-xl md:text-2xl lg:text-3xl">Bentang makna Indonesia</span>
             </Link>
             <Link href="/daerah">
-             <ChevronRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
-             </Link>
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+            </Link>
 
           </motion.div>
 
@@ -304,15 +304,15 @@ const CarouselSection = () => {
                           transition={{ duration: 0.35, delay: 0.28 }}
                         >
                           <Link href="/daerah">
-                           <Button
-                            size="sm"
-                            variant="ghost"
-                            className="rounded-md border border-white text-white hover:bg-white/20 hover:text-white transition text-sm w-full sm:w-auto cursor-pointer"
-                          >
-                            Baca Selengkapnya
-                          </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="rounded-md border border-white text-white hover:bg-white/20 hover:text-white transition text-sm w-full sm:w-auto cursor-pointer"
+                            >
+                              Baca Selengkapnya
+                            </Button>
                           </Link>
-                          
+
                         </motion.div>
                       </motion.div>
                     </div>

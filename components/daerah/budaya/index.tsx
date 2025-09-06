@@ -38,7 +38,7 @@ const islandInfos: Record<string, IslandInfo> = {
     "/daerah/asset/sumatra/1.svg",
     "/daerah/asset/sumatra/2.svg",
     "/daerah/asset/sumatra/3.svg",
-    
+
   ),
   Jawa: new IslandInfo(
     "Wayang Kulit",
