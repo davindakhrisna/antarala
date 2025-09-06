@@ -14,7 +14,6 @@ class IslandInfo {
   image: string
   uid: string | null
   section: string
-
   constructor(name: string, paragraph: string, image: string, uid: string | null, section: string = "makanan") {
     this.name = name
     this.paragraph = paragraph
@@ -178,7 +177,6 @@ const Situs = () => {
         setLoading(false)
       }
     }
-
     fetchUids()
   }, [])
 
@@ -186,7 +184,7 @@ const Situs = () => {
 
   if (loading) {
     return (
-      <section className="p-12 sm:p-24 bg-[#FAF4E1] flex justify-center items-center">
+      <section className="p-12 sm:p-24 bg-[#F2EDDA] flex justify-center items-center">
         <div>Loading...</div>
       </section>
     )
@@ -194,54 +192,54 @@ const Situs = () => {
 
   if (error) {
     return (
-      <section className="p-12 sm:p-24 bg-[#FAF4E1] flex justify-center items-center">
+      <section className="p-12 sm:p-24 bg-[#F2EDDA] flex justify-center items-center">
         <div>Error: {error}</div>
       </section>
     )
   }
 
   return info ? (
-    <section className="p-12 sm:p-24 sm:!py-14 bg-[#FAF4E1]">
-      <div className="flex flex-col xl:flex-row justify-center px-12 2xl:px-24 p-8 items-center gap-2 md:gap-12">
-        {/* Image - kept on the left for larger screens */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative flex justify-center items-center w-full 2xl:pr-18 mb-8 md:mb-0 lg:w-auto xl:justify-start"
+    <section id="makanan" className="p-8 py-32 md:p-16 lg:p-24 bg-[#F2EDDA] text-[#676F59] relative xl:p-32 flex flex-col-reverse xl:flex-row-reverse items-center justify-center xl:gap-16">
+      {/* Text */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        className="w-full xl:flex-1 min-w-0 px-8 lg:px-0 lg:max-w-3xl xl:max-w-lg 2xl:max-w-3xl pt-64 xl:pt-0"
+      >
+        <h1 className="text-4xl xl:text-5xl 2xl:text-7xl font-bold text-center sm:text-justify">{info.name}</h1>
+        <p className="mt-4 text-md md:text-xl text-justify">{info.paragraph}</p>
+        <Button 
+          asChild 
+          className="mt-8 bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6" 
+          disabled={!info.uid}
         >
-          <Image
-            src={info.image}
-            width={1}
-            height={1}
-            alt="Gambar Makanan Khas"
-            className="w-full md:w-10/10 xl:w-lg xl:py-20"
-          />
-        </motion.div>
-        {/* Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="space-y-6 md:space-y-7 max-w-md 2xl:max-w-2xl text-center lg:text-start"
-        >
-          <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-wide text-[#6A705B]">
-            {info.name}
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl 2xl:text-2xl text-muted-foreground text-justify lg:text-start">
-            {info.paragraph}
-          </p>
-          <Button 
-            asChild 
-            className="bg-[#677059] hover:bg-[#354025] px-8 text-sm md:text-xl xl:text-2xl md:py-6" 
-            disabled={!info.uid}
-          >
-            <Link href={info.link}>Baca Selengkapnya</Link>
-          </Button>
-        </motion.div>
-      </div>
+          <Link href={info.link}>Baca Selengkapnya</Link>
+        </Button>
+      </motion.div>
+      
+      {/* Image */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="w-full xl:w-5/12 absolute xl:relative top-0 h-[200px] lg:h-[300px] xl:h-[400px]"
+      >
+        <div className="h-full relative overflow-hidden xl:rounded-2xl">
+          <div className="absolute inset-0">
+            <Image
+              src={info.image}
+              alt={info.name}
+              fill
+              sizes="(min-width: 1280px) 50vw, 100vw"
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+        </div>
+      </motion.div>
     </section>
   ) : null
 }
