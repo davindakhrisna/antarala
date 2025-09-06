@@ -118,7 +118,7 @@ export default function BacaanPage() {
     <div className="min-h-screen" style={{ backgroundColor: "#FAF4E1" }}>
       <div className="w-full px-6 sm:px-8 lg:px-16 py-25">
         {/* Header and Tags Section */}
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center gap-6 lg:gap-8 mb-8 lg:mb-12">
+        <div className="flex flex-col relative lg:flex-row lg:justify-between items-center gap-6 lg:gap-8 mb-8 lg:mb-12">
           {/* Left side - Title and Tags */}
           <div className="space-y-6 flex-1 lg:max-w-4xl">
             <div className="flex space-x-4 items-center">
@@ -146,7 +146,7 @@ export default function BacaanPage() {
 
 
             {/* Tag chips (multi-select) */}
-            <div className="flex items-center gap-2 overflow-x-auto scrollbar-thin pb-2 sm:pb-0 sm:flex-wrap sm:overflow-visible sm:gap-3">
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-thin pb-2 sm:pb-0 flex-wrap overflow-visible sm:gap-3">
               {tags.map((tag, index) => {
                 const isAll = tag === "Semua"
                 const active = isAll ? selectedTags.length === 0 : selectedTags.includes(tag)
