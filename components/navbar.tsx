@@ -3,15 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Search, Public } from "@mui/icons-material"
+import { Search } from "@mui/icons-material"
 import { useState, useEffect } from "react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import {
   Sheet,
   SheetClose,
@@ -23,21 +16,25 @@ import {
 } from "@/components/ui/sheet"
 import { Separator } from "@/components/ui/separator"
 
-function Sidebar({ language, onLanguageChange }: { language: string, onLanguageChange: (lang: string) => void }) {
+function Sidebar({ isSpecialPath }: { isSpecialPath: boolean }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const navigationLinks = [
-    { href: "/beranda", label: "Beranda" },
+    { href: "/", label: "Beranda" },
     { href: "/daerah", label: "Daerah" },
     { href: "/bacaan", label: "Bacaan" },
-    { href: "#contact", label: "Mini Game" },
+    { href: "/game", label: "Mini Game" },
   ]
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="flex justify-center items-center text-[#F3F8F4]">
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <Button
+          variant="ghost"
+          size="icon"
+          className={`flex justify-center items-center ${isSpecialPath ? 'text-black' : 'text-[#F3F8F4]'}`}
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </Button>
@@ -65,29 +62,10 @@ function Sidebar({ language, onLanguageChange }: { language: string, onLanguageC
               <Separator />
 
               <div className="flex flex-col space-y-2">
-                <Link href="/artikel" className="px-4 py-2 text-lg space-x-2 flex justify-end" onClick={() => setIsOpen(false)}>
+                <Link href="/bacaan" className={`px-4 py-2 text-lg space-x-2 flex justify-end`} onClick={() => setIsOpen(false)}>
                   <Search className="h-5 w-5" />
                   <span>Search</span>
                 </Link>
-
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <div className="flex space-x-2 text-lg py-2 px-4 justify-end hover:bg-gray-700">
-                      <Public className="h-5 w-5" />
-                      <span>{language}</span>
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-[#282626] border-gray-700 text-[#F3F8F4]">
-                    <DropdownMenuRadioGroup value={language} onValueChange={onLanguageChange}>
-                      <DropdownMenuRadioItem value="EN" className="cursor-pointer hover:bg-gray-700">
-                        English
-                      </DropdownMenuRadioItem>
-                      <DropdownMenuRadioItem value="ID" className="cursor-pointer hover:bg-gray-700">
-                        Indonesia
-                      </DropdownMenuRadioItem>
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
               </div>
             </nav>
           </div>
@@ -126,14 +104,18 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    if (isSpecialPath) {
-      setLogo("/logo-navbar-dark.svg")
-    }
+    // Deterministic ordering:
+    // 1) When scrolled anywhere, always use the normal logo
+    // 2) When on special routes and not scrolled, use the dark logo
+    // 3) Otherwise (home and not scrolled), use the normal logo
     if (isScrolled) {
       setLogo("/logo-navbar.svg")
+    } else if (isSpecialPath) {
+      setLogo("/logo-navbar-dark.svg")
+    } else {
+      setLogo("/logo-navbar.svg")
     }
-
-  }, [pathname, isScrolled, isSpecialPath])
+  }, [isScrolled, isSpecialPath])
 
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'backdrop-blur-lg bg-[#282626]/50' : ''}`}>
@@ -141,14 +123,16 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center fill-black">
-            <Image
-              src={logo}
-              alt="Antarala"
-              width={100}
-              height={40}
-              quality={100}
-              priority
-            />
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="Antarala"
+                width={100}
+                height={40}
+                quality={100}
+                priority
+              />
+            </Link>
           </div>
 
           {/* Navigation Links */}
@@ -182,39 +166,20 @@ export default function Navbar() {
           {/* Right Side - Language & Search */}
           <div className="hidden lg:flex items-center space-x-4">
 
-            {/* Language Selector */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="flex items-center space-x-1 cursor-pointer">
-                  <Public className={`h-4 w-4 ${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
-                  <span className={`${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`}>{language}</span>
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
-                  <DropdownMenuRadioItem value="EN" className="cursor-pointer">English</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="ID" className="cursor-pointer">Indonesia</DropdownMenuRadioItem>
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Separator */}
-            <div className={`h-6 w-px bg-white ${isSpecialPath ? `!bg-black` : ''} ${isScrolled ? `!bg-white` : ''}`} />
-
             {/* Search */}
             <div className="flex items-center">
-              <Link href="/artikel">
+              <Link href="/bacaan">
                 <Search className={`h-4 w-4 ${isSpecialPath ? `text-black` : `text-[#F3F8F4]`} ${isScrolled ? `!text-[#F3F8F4]` : ''}`} />
               </Link>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <Sidebar language={language} onLanguageChange={setLanguage} />
+          <div className={`lg:hidden ${isSpecialPath ? 'text-black' : ''}`}>
+            <Sidebar isSpecialPath={isSpecialPath} />
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   )
 }

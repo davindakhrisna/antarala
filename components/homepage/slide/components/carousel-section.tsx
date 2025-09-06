@@ -95,14 +95,14 @@ const CarouselSection = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.45, delay: 0.05 }}
         >
           <motion.h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
           >
             JELAJAHI INDONESIA
           </motion.h1>
@@ -111,7 +111,7 @@ const CarouselSection = () => {
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             Ada apa aja sih di negara tercinta kita? Yuk jelajahi Indonesia bersama Antarala
           </motion.p>
@@ -124,7 +124,7 @@ const CarouselSection = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.45, delay: 0.12 }}
           >
             <Link href="/daerah">
             <span className="text-xl md:text-2xl lg:text-3xl">Bentang makna Indonesia</span>
@@ -161,11 +161,11 @@ const CarouselSection = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.45, delay: 0.15 }}
             >
               <div
                 ref={carouselRef}
-                className="flex transition-transform duration-700 ease-in-out"
+                className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {destinations.map((dest) => (
@@ -175,7 +175,7 @@ const CarouselSection = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: false, amount: 0.3 }}
-                        transition={{ duration: 0.8, delay: 0.8 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       >
                         <Image
                           src={dest.image}
@@ -196,7 +196,7 @@ const CarouselSection = () => {
                           initial={{ opacity: 0, x: -30 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
-                          transition={{ duration: 0.8, delay: 0.5 }}
+                          transition={{ duration: 0.45, delay: 0.15 }}
                         >
                           {/* Bagian nomor + garis + dot */}
                           <div className="flex-col items-start hidden lg:flex">
@@ -206,7 +206,7 @@ const CarouselSection = () => {
                               initial={{ opacity: 0, x: -20 }}
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: false, amount: 0.3 }}
-                              transition={{ duration: 0.6, delay: 0.6 }}
+                              transition={{ duration: 0.4, delay: 0.18 }}
                             >
                               {dest.number}
                             </motion.p>
@@ -217,7 +217,7 @@ const CarouselSection = () => {
                               initial={{ scaleY: 0 }}
                               whileInView={{ scaleY: 1 }}
                               viewport={{ once: false, amount: 0.3 }}
-                              transition={{ duration: 0.8, delay: 0.8 }}
+                              transition={{ duration: 0.45, delay: 0.22 }}
                               style={{ height: "40px" }} // tinggi garis
                             >
                               {/* Dot animasi */}
@@ -226,7 +226,7 @@ const CarouselSection = () => {
                                 initial={{ opacity: 0, scale: 0 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: false, amount: 0.3 }}
-                                transition={{ duration: 0.5, delay: 1.2, type: "spring", stiffness: 120 }}
+                                transition={{ duration: 0.35, delay: 0.28, type: "spring", stiffness: 160 }}
                               />
                             </motion.div>
                           </div>
@@ -236,7 +236,7 @@ const CarouselSection = () => {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: false, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: 1.3 }}
+                            transition={{ duration: 0.4, delay: 0.24 }}
                           >
                             Bentang Alam
                           </motion.p>
@@ -248,7 +248,7 @@ const CarouselSection = () => {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: false, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: 1.4 }}
+                            transition={{ duration: 0.4, delay: 0.28 }}
                           >
                             {dest.description2}
                           </motion.p>
@@ -272,11 +272,11 @@ const CarouselSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false, amount: 0.3 }}
                         transition={{
-                          type: "spring",   // pakai spring animation
-                          stiffness: 60,    // kekakuan (semakin tinggi, semakin cepat)
-                          damping: 18,      // redam pantulan
-                          bounce: 0.15,      // seberapa mantul
-                          delay: 0.4        // jeda sebelum animasi jalan
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 16,
+                          bounce: 0.12,
+                          delay: 0.12
                         }}
                       >
                         <motion.h3
@@ -284,7 +284,7 @@ const CarouselSection = () => {
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
-                          transition={{ duration: 0.6, delay: 1.1 }}
+                          transition={{ duration: 0.35, delay: 0.2 }}
                         >
                           {dest.name}
                         </motion.h3>
@@ -293,7 +293,7 @@ const CarouselSection = () => {
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
-                          transition={{ duration: 0.6, delay: 1.2 }}
+                          transition={{ duration: 0.35, delay: 0.24 }}
                         >
                           {dest.description}
                         </motion.p>
@@ -301,13 +301,13 @@ const CarouselSection = () => {
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
-                          transition={{ duration: 0.6, delay: 1.3 }}
+                          transition={{ duration: 0.35, delay: 0.28 }}
                         >
                           <Link href="/daerah">
                            <Button
                             size="sm"
                             variant="ghost"
-                            className="rounded-md border border-white text-white hover:bg-white/20 hover:text-white transition text-sm w-full sm:w-auto"
+                            className="rounded-md border border-white text-white hover:bg-white/20 hover:text-white transition text-sm w-full sm:w-auto cursor-pointer"
                           >
                             Baca Selengkapnya
                           </Button>
@@ -331,7 +331,7 @@ const CarouselSection = () => {
                 <motion.button
                   onClick={prevSlide}
                   aria-label="Previous Slide"
-                  className="p-1 sm:p-2 text-gray-400 hover:text-black transition"
+                  className="p-1 sm:p-2 text-gray-400 hover:text-black transition cursor-pointer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -344,7 +344,7 @@ const CarouselSection = () => {
                     <motion.button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`h-[2px] sm:h-[3px] rounded-full transition-all duration-300 ${index === currentIndex ? "w-4 sm:w-6 md:w-8 bg-black" : "w-2 sm:w-3 bg-gray-400"
+                      className={`h-[2px] sm:h-[3px] rounded-full transition-all duration-300 cursor-pointer ${index === currentIndex ? "w-4 sm:w-6 md:w-8 bg-black" : "w-2 sm:w-3 bg-gray-400"
                         }`}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.8 }}
@@ -358,7 +358,7 @@ const CarouselSection = () => {
                 <motion.button
                   onClick={nextSlide}
                   aria-label="Next Slide"
-                  className="p-1 sm:p-2 text-gray-400 hover:text-black transition"
+                  className="p-1 sm:p-2 text-gray-400 hover:text-black transition cursor-pointer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >

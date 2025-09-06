@@ -68,7 +68,7 @@ export default function Tradisi() {
             </motion.p>
             <Link href="/daerah">
             <motion.button
-              className="border border-white/50 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-white/10 transition-colors duration-300 text-sm sm:text-base"
+              className="cursor-pointer border border-white/50 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-white/10 transition-colors duration-300 text-sm sm:text-base"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.3 }}

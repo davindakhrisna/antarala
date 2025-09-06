@@ -121,6 +121,8 @@ const Kuliner = () => {
             className="w-80 flex-shrink-0"
           >
             <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
+              {/* Clickable overlay to match 'Baca Selengkapnya' */}
+              <Link href={`/bacaan/${pepesIkanUid ?? ''}`} aria-label="Lihat Pepes Ikan" className="absolute inset-0 z-10" />
               <Image
                 src="/homepage/kuliner/pepes-ikan.svg"
                 alt="Pepes Ikan"
@@ -148,6 +150,8 @@ const Kuliner = () => {
             className="flex-1 relative"
           >
             <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
+              {/* Clickable overlay to match 'Baca Selengkapnya' */}
+              <Link href={`/bacaan/${rotiGOUid ?? ''}`} aria-label="Lihat Toko Roti Go Purwokerto" className="absolute inset-0 z-10" />
               <Image
                 src="/homepage/kuliner/rotigo.svg"
                 alt="Roti Go"
@@ -221,7 +225,7 @@ const Kuliner = () => {
                     Cita rasa autentik Indonesia yang memukau lidah, dari hidangan tradisional hingga kreasi modern yang
                     menggugah selera.
                   </p>
-                  <button className="px-4 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-800 transition-colors duration-300 rounded">
+                  <button className="px-4 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-800 transition-colors duration-300 rounded cursor-pointer">
                     Baca Selengkapnya
                   </button>
                 </motion.div>
@@ -241,6 +245,8 @@ const Kuliner = () => {
             className="w-56 flex-shrink-0"
           >
             <div className="relative h-72 rounded-lg overflow-hidden group cursor-pointer">
+              {/* Clickable overlay */}
+              <Link href={`/bacaan/${pepesIkanUid ?? ''}`} aria-label="Lihat Pepes Ikan" className="absolute inset-0 z-10" />
               <Image
                 src="/homepage/kuliner/pepes-ikan.svg"
                 alt="Pepes Ikan"
@@ -268,6 +274,8 @@ const Kuliner = () => {
             className="flex-1 relative"
           >
             <div className="relative h-72 rounded-lg overflow-hidden group cursor-pointer">
+              {/* Clickable overlay */}
+              <Link href={`/bacaan/${rotiGOUid ?? ''}`} aria-label="Lihat Toko Roti Go Purwokerto" className="absolute inset-0 z-10" />
               <Image
                 src="/homepage/kuliner/rotigo.svg"
                 alt="Roti Go"
@@ -368,6 +376,7 @@ const Kuliner = () => {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 >
                   <div className="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+                    <Link href={`/bacaan/${pepesIkanUid ?? ''}`} aria-label="Lihat Pepes Ikan" className="absolute inset-0 z-10" />
                     <Image
                       src="/homepage/kuliner/pepes-ikan.svg"
                       alt="Pepes Ikan"
@@ -396,6 +405,7 @@ const Kuliner = () => {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
                 >
                   <div className="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+                    <Link href={`/bacaan/${rotiGOUid ?? ''}`} aria-label="Lihat Toko Roti Go Purwokerto" className="absolute inset-0 z-10" />
                     <Image
                       src="/homepage/kuliner/rotigo.svg"
                       alt="Roti Go"
@@ -468,7 +478,7 @@ const Kuliner = () => {
                           Cita rasa autentik Indonesia yang memukau lidah, dari hidangan tradisional hingga kreasi modern yang
                           menggugah selera.
                         </p>
-                        <button className="px-4 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-800 transition-colors duration-300 rounded">
+                        <button className="px-4 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-800 transition-colors duration-300 rounded cursor-pointer">
                           Baca Selengkapnya
                         </button>
                       </motion.div>
@@ -482,7 +492,7 @@ const Kuliner = () => {
             <div className="flex justify-center mt-4 space-x-2">
               <button
                 onClick={prevSlide}
-                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
+                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300 cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5 text-gray-800" />
               </button>
@@ -491,14 +501,14 @@ const Kuliner = () => {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentSlide === index ? "bg-gray-800" : "bg-gray-400"
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 cursor-pointer ${currentSlide === index ? "bg-gray-800" : "bg-gray-400"
                       }`}
                   />
                 ))}
               </div>
               <button
                 onClick={nextSlide}
-                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
+                className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300 cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5 text-gray-800" />
               </button>
