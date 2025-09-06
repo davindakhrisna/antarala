@@ -1,85 +1,189 @@
+"use client"
 
 import { useIsland } from "@/components/daerah/island-context"
+import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
 
 class IslandInfo {
+  cardName: string
+  cardParagraph: string
   name: string
   paragraph: string
-  link: string
-  image: string
-  imageMini: string
 
-  constructor(name: string, paragraph: string, link: string, image: string, imageMini: string) {
+  image1: string
+  paragraphImg1: string
+  image2: string
+  paragraphImg2: string
+  image3: string
+  paragraphImg3: string
+
+  paragraphSlide: string
+
+  constructor(cardName: string, cardParagraph: string, name: string, paragraph: string, image1: string, paragraphImg1: string, image2: string, paragraphImg2: string, image3: string, paragraphImg3: string, paragraphSlide: string) {
+    this.cardName = cardName
+    this.cardParagraph = cardParagraph
     this.name = name
     this.paragraph = paragraph
-    this.link = link
-    this.image = image
-    this.imageMini = imageMini
+    this.image1 = image1
+    this.paragraphImg1 = paragraphImg1
+    this.image2 = image2
+    this.paragraphImg2 = paragraphImg2
+    this.image3 = image3
+    this.paragraphImg3 = paragraphImg3
+    this.paragraphSlide = paragraphSlide
   }
 }
 
 const islandInfos: Record<string, IslandInfo> = {
   Sumatra: new IslandInfo(
-    "Lawang Borotan",
-    "Lawang Borotan bukan sekadar gerbang tua, tapi titik sunyi di mana sejarah Palembang berubah arah. Di sinilah Sultan Mahmud Badaruddin II melangkah menuju pengasingan, meninggalkan jejak terakhir kejayaan kesultanan yang kini hanya bergema dalam ingatan.",
-    "/bacaan/{uid}",
-    "/daerah/asset/sumatra/image.svg",
-    "/daerah/asset/sumatra/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "SUMATRA",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
   ),
   Jawa: new IslandInfo(
-    "Situs Trowulan",
-    "Trowulan bukan sekadar tanah tua yang menyimpan bata merah dan pecahan keramik. Ia adalah sisa napas dari sebuah peradaban yang pernah bermimpi besar, membentangkan pengaruh hingga ke seantero Nusantara.",
-    "/bacaan/{uid}",
-    "/daerah/asset/jawa/image.svg",
-    "/daerah/asset/jawa/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   Kalimantan: new IslandInfo(
-    "Keraton Matan",
-    "Keraton Matan adalah peninggalan dari Kerajaan Tanjungpura, yang diyakini sebagai salah satu kerajaan Melayu tertua di Kalimantan Barat, berdiri sejak abad ke-8 Masehi, kerajaan ini memeluk Islam dan berganti nama menjadi Kerajaan Matan.",
-    "/bacaan/{uid}",
-    "/daerah/asset/kalimantan/image.svg",
-    "/daerah/asset/kalimantan/mini-image.png"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   Bali: new IslandInfo(
-    "Gereja Palasari",
-    "Gereja ini bernama lengkap Gereja Hati Kudus Yesus Palasari, terletak di Dusun Palasari, Desa Ekasari, Kecamatan Melaya, Kabupaten Jembrana, Bali Barat. Meski berada di wilayah mayoritas Hindu, gereja ini menjadi simbol kerukunan antarumat beragama yang kuat.",
-    "/bacaan/{uid}",
-    "/daerah/asset/bali/image.svg",
-    "/daerah/asset/bali/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   Sulawesi: new IslandInfo(
-    "Makam Tandano",
-    "Makam Kyai Mojo terletak di Desa Wulauan, Kecamatan Tondano Utara, di atas bukit bernama Tondata, sekitar 1 km dari pusat kota Tondano. Dikelilingi pepohonan rindang dan suasana sunyi.",
-    "/bacaan/{uid}",
-    "/daerah/asset/sulawesi/image.svg",
-    "/daerah/asset/sulawesi/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   Papua: new IslandInfo(
-    "Pulau Mansinan",
-    "Pulau ini menjadi titik awal masuknya kekristenan di Papua pada tahun 1855, saat dua misionaris Jerman, Carl Wilhelm Ottow dan Johann Gottlob Geissler mendarat dan mulai menyebarkan ajaran.",
-    "/bacaan/{uid}",
-    "/daerah/asset/papua/image.svg",
-    "/daerah/asset/papua/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   NTT: new IslandInfo(
-    "Situs Laratunka",
-    "Larantuka adalah kota kecil di pesisir timur Pulau Flores yang menjadi pusat penyebaran agama Katolik sejak abad ke-16. Nama “Larantuka” diyakini berasal dari kata “lara” (penderitaan) dan “tuka” (penggantian), melambangkan pergulatan spiritual masyarakat lokal saat menerima ajaran baru dari misionaris Portugis.",
-    "/bacaan/{uid}",
-    "/daerah/asset/ntt/image.svg",
-    "/daerah/asset/ntt/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
   NTB: new IslandInfo(
-    "Taman Mayura",
-    "Taman Mayura dibangun pada tahun 1744 M oleh Raja A.A. Made Karangasem dari Kerajaan Bali yang berkuasa di Lombok saat itu. Pada tahun 1866, taman direnovasi dan diberi nama “Mayura,” yang berarti burung merak dalam bahasa Sanskerta. Nama ini dipilih karena merak dipercaya mampu mengusir ular yang sering muncul di taman.",
-    "/bacaan/{uid}",
-    "/daerah/asset/ntb/image.svg",
-    "/daerah/asset/ntb/mini-image.svg"
+    "Pulau Sumatra",
+    "Pulau Sumatra adalah bentang luas yang menyimpan denyut alam dan sejarah, dari kerajaan maritim hingga hutan tropis yang masih berbisik.",
+    "Sumatra",
+    "Pulau Sumatra adalah pulau terbesar keenam di dunia dan terletak di sisi barat Indonesia, menghadap langsung ke Samudra Hindia. Dengan luas sekitar 473.481 km².",
+    "/daerah/asset/sumatra/slide1.svg",
+    "Istana Bung Hatta",
+    "/daerah/asset/sumatra/slide2.svg",
+    "Museum Negara Sumatra",
+    "/daerah/asset/sumatra/slide3.svg",
+    "Tjong A Fie Mansion",
+    "Pulau Sumatra adalah ruang luas yang menjadi nadi barat Indonesia, menyatukan kekayaan alam, sejarah maritim, dan keberagaman budaya yang mendalam. Letaknya yang strategis di jalur Selat Malaka menjadikannya poros penting dalam pergerakan ekonomi dan budaya, menjembatani masa lalu dan masa kini dalam lanskap yang terus berubah."
+
   ),
 }
 
-const Slider = () => {
+const Slide1 = ({ info }: { info: IslandInfo }) => {
   return (
-    <div className="min-h-screen bg-[#333E24]">test</div>
+      <div className="min-h-screen px-6 flex flex-col-reverse xl:flex-row justify-center items-center h-full w-full gap-12 md:gap-24">
+
+        {/* Card */}
+        <div>
+        <Card className="max-w-lg w-full py-10 sm:py-16 xl:py-24 bg-[#FAF4E1] text-[#333E24] transform rotate-0 xl:rotate-12">
+          <CardContent className="space-y-8">
+            <h1 className="text-3xl lg:text-5xl font-bold underline">{info.cardName}</h1>
+            <p className="text-lg lg:text-2xl">{info.cardParagraph}</p>
+          </CardContent>
+        </Card>
+        </div>
+        
+
+        {/* Text */}
+        <div className="max-w-2xl text-[#FAF4E1] space-y-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-8xl font-bold">{info.name}</h1>
+          <p className="text-lg lg:text-2xl">{info.paragraph}</p>
+        </div>
+
+      </div>
   )
+}
+
+const Slider = () => {
+  const { selected } = useIsland()
+  const info = selected ? islandInfos[selected] : undefined
+  return info ? (
+    <section id="slider" className="min-h-screen bg-[#333E24]">
+
+      {/* 1 */}
+      <Slide1 info={info} />
+
+    </section>
+  ) : null
 }
 
 export default Slider
